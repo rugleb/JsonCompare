@@ -1,5 +1,5 @@
 def is_dict(o):
-    return isinstance(o, dict)
+    return type(o) is dict
 
 
 def is_not_dict(o):
@@ -31,19 +31,19 @@ def is_not_str(o):
 
 
 def is_list(o):
-    return isinstance(o, list)
+    return type(o) is list
 
 
 def is_not_list(o):
     return not is_list(o)
 
 
-def is_equal_types(first, second):
-    return type(first) is type(second)
+def is_equal_types(a, b):
+    return type(a) is type(b)
 
 
-def is_not_equal_types(first, second):
-    return not is_equal_types(first, second)
+def is_not_equal_types(a, b):
+    return not is_equal_types(a, b)
 
 
 def is_primitive(o):
