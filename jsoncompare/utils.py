@@ -22,6 +22,14 @@ def is_not_int(o):
     return not is_int(o)
 
 
+def is_float(o):
+    return type(o) is float
+
+
+def is_not_float(o):
+    return not is_float(o)
+
+
 def is_str(o):
     return type(o) is str
 
@@ -47,7 +55,7 @@ def is_not_equal_types(a, b):
 
 
 def is_primitive(o):
-    return type(o) in (int, bool, str)
+    return type(o) in (int, float, bool, str)
 
 
 def is_not_primitive(o):

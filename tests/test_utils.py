@@ -83,6 +83,28 @@ class UtilsTestCase(unittest.TestCase):
         self.assertFalse(is_int({}))
         self.assertTrue(is_not_int({}))
 
+    def test_is_float_function(self):
+        self.assertTrue(is_float(1.1))
+        self.assertFalse(is_not_float(1.1))
+
+        self.assertFalse(is_float('1.1'))
+        self.assertTrue(is_not_float('1.1'))
+
+        self.assertFalse(is_float(1))
+        self.assertTrue(is_not_float(1))
+
+        self.assertFalse(is_float(True))
+        self.assertTrue(is_not_float(True))
+
+        self.assertFalse(is_float(None))
+        self.assertTrue(is_not_float(None))
+
+        self.assertFalse(is_float({}))
+        self.assertTrue(is_not_float({}))
+
+        self.assertFalse(is_float([]))
+        self.assertTrue(is_not_float([]))
+
     def test_is_str_function(self):
         self.assertTrue(is_str('1'))
         self.assertFalse(is_not_str('1'))
