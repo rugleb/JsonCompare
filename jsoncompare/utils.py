@@ -28,3 +28,11 @@ def is_equal_types(first, second):
 
 def is_not_equal_types(first, second):
     return not is_equal_types(first, second)
+
+
+def is_primitive(o):
+    return type(o) in (int, bool, str)
+
+
+def is_not_primitive(o):
+    return not is_primitive(o)

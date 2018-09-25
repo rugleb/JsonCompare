@@ -82,3 +82,12 @@ class UtilsTestCase(unittest.TestCase):
 
         self.assertFalse(is_equal_types('1', 1))
         self.assertTrue(is_not_equal_types('1', 1))
+
+    def test_is_primitive_function(self):
+        self.assertTrue(is_primitive(1))
+        self.assertTrue(is_primitive(True))
+        self.assertTrue(is_primitive('str'))
+
+        self.assertTrue(is_not_primitive({}))
+        self.assertTrue(is_not_primitive([]))
+        self.assertTrue(is_not_primitive(None))
