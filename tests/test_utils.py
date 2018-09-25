@@ -91,3 +91,13 @@ class UtilsTestCase(unittest.TestCase):
         self.assertTrue(is_not_primitive({}))
         self.assertTrue(is_not_primitive([]))
         self.assertTrue(is_not_primitive(None))
+
+    def test_is_iterable_function(self):
+        self.assertTrue(is_iterable([]))
+        self.assertTrue(is_iterable({}))
+        self.assertTrue(is_iterable(()))
+        self.assertTrue(is_iterable(set()))
+
+        self.assertTrue(is_not_iterable(1))
+        self.assertTrue(is_not_iterable(True))
+        self.assertTrue(is_not_iterable('str'))

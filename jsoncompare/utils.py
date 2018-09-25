@@ -36,3 +36,11 @@ def is_primitive(o):
 
 def is_not_primitive(o):
     return not is_primitive(o)
+
+
+def is_iterable(o):
+    return type(o) in (dict, list, tuple, set)
+
+
+def is_not_iterable(o):
+    return not is_iterable(o)
