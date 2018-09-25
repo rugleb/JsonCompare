@@ -21,6 +21,9 @@ class UtilsTestCase(unittest.TestCase):
         self.assertFalse(is_dict(None))
         self.assertTrue(is_not_dict(None))
 
+        self.assertFalse(is_dict([]))
+        self.assertTrue(is_not_dict([]))
+
     def test_is_bool_function(self):
         self.assertTrue(is_bool(True))
         self.assertTrue(is_bool(False))
