@@ -68,3 +68,11 @@ def is_iterable(o):
 
 def is_not_iterable(o):
     return not is_iterable(o)
+
+
+def key_exist(k, d):
+    return k in d
+
+
+def key_not_exist(k, d):
+    return not key_exist(k, d)

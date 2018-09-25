@@ -161,3 +161,12 @@ class UtilsTestCase(unittest.TestCase):
         self.assertTrue(is_not_iterable(1))
         self.assertTrue(is_not_iterable(True))
         self.assertTrue(is_not_iterable('str'))
+
+    def test_key_exist_function(self):
+        d = {'a': 1, 'b': 2}
+
+        self.assertTrue(key_exist('a', d))
+        self.assertTrue(key_not_exist('c', d))
+
+        self.assertFalse(key_not_exist('a', d))
+        self.assertFalse(key_exist('c', d))
