@@ -14,6 +14,14 @@ def is_not_bool(o):
     return not is_bool(o)
 
 
+def is_int(o):
+    return type(o) is int
+
+
+def is_not_int(o):
+    return not is_int(o)
+
+
 def is_list(o):
     return isinstance(o, list)
 
