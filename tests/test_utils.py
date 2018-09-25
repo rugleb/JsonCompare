@@ -41,3 +41,25 @@ class UtilsTestCase(unittest.TestCase):
 
         self.assertFalse(is_bool([]))
         self.assertTrue(is_not_bool([]))
+
+        self.assertFalse(is_bool(None))
+        self.assertTrue(is_not_list(None))
+
+    def test_is_list_function(self):
+        self.assertTrue(is_list([]))
+        self.assertFalse(is_not_list([]))
+
+        self.assertFalse(is_list({}))
+        self.assertTrue(is_not_list({}))
+
+        self.assertFalse(is_list(1))
+        self.assertTrue(is_not_list(1))
+
+        self.assertFalse(is_list('str'))
+        self.assertTrue(is_not_list('str'))
+
+        self.assertFalse(is_list(True))
+        self.assertTrue(is_not_list(True))
+
+        self.assertFalse(is_list(None))
+        self.assertTrue(is_not_list(None))

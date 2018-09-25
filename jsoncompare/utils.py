@@ -12,3 +12,11 @@ def is_bool(o):
 
 def is_not_bool(o):
     return not is_bool(o)
+
+
+def is_list(o):
+    return isinstance(o, list)
+
+
+def is_not_list(o):
+    return not is_list(o)
