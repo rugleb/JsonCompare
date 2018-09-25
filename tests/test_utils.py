@@ -83,6 +83,25 @@ class UtilsTestCase(unittest.TestCase):
         self.assertFalse(is_int({}))
         self.assertTrue(is_not_int({}))
 
+    def test_is_str_function(self):
+        self.assertTrue(is_str('1'))
+        self.assertFalse(is_not_str('1'))
+
+        self.assertFalse(is_str(1))
+        self.assertTrue(is_not_str(1))
+
+        self.assertFalse(is_str(True))
+        self.assertTrue(is_not_str(True))
+
+        self.assertFalse(is_str(None))
+        self.assertTrue(is_not_str(None))
+
+        self.assertFalse(is_str({}))
+        self.assertTrue(is_not_str({}))
+
+        self.assertFalse(is_str([]))
+        self.assertTrue(is_not_str([]))
+
     def test_is_equal_types_function(self):
         self.assertTrue(is_equal_types({}, {}))
         self.assertTrue(is_equal_types([], []))

@@ -22,6 +22,14 @@ def is_not_int(o):
     return not is_int(o)
 
 
+def is_str(o):
+    return type(o) is str
+
+
+def is_not_str(o):
+    return not is_str(o)
+
+
 def is_list(o):
     return isinstance(o, list)
 
