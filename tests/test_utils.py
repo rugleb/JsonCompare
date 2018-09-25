@@ -171,6 +171,14 @@ class UtilsTestCase(unittest.TestCase):
         self.assertFalse(key_not_exist('a', d))
         self.assertFalse(key_exist('c', d))
 
+    def test_index_exist_function(self):
+        lst = [1, 2]
+
+        self.assertTrue(index_exist(0, lst))
+        self.assertTrue(index_exist(1, lst))
+        self.assertTrue(index_not_exist(2, lst))
+        self.assertTrue(index_not_exist(-1, lst))
+
     def test_values_equal_function(self):
         self.assertTrue(values_equal(1, 1))
         self.assertTrue(values_not_equal(1, '1'))

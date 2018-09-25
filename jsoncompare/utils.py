@@ -78,6 +78,14 @@ def key_not_exist(k, d):
     return not key_exist(k, d)
 
 
+def index_exist(i, l):
+    return 0 <= i < len(l)
+
+
+def index_not_exist(i, l):
+    return not index_exist(i, l)
+
+
 def values_equal(a, b):
     if types_is_not_equal(a, b):
         return False
