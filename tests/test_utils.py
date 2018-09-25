@@ -1,6 +1,6 @@
 import unittest
 
-from jsoncompare.utils import is_dict, is_not_dict
+from jsoncompare.utils import *
 
 
 class UtilsTestCase(unittest.TestCase):
@@ -20,3 +20,21 @@ class UtilsTestCase(unittest.TestCase):
 
         self.assertFalse(is_dict(None))
         self.assertTrue(is_not_dict(None))
+
+    def test_is_bool_function(self):
+        self.assertTrue(is_bool(True))
+        self.assertTrue(is_bool(False))
+        self.assertFalse(is_not_bool(True))
+        self.assertFalse(is_not_bool(False))
+
+        self.assertFalse(is_bool({}))
+        self.assertTrue(is_not_bool({}))
+
+        self.assertFalse(is_bool(1))
+        self.assertTrue(is_not_bool(1))
+
+        self.assertFalse(is_bool('str'))
+        self.assertTrue(is_not_bool('str'))
+
+        self.assertFalse(is_bool([]))
+        self.assertTrue(is_not_bool([]))
