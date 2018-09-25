@@ -46,12 +46,12 @@ def is_not_list(o):
     return not is_list(o)
 
 
-def is_equal_types(a, b):
+def types_is_equal(a, b):
     return type(a) is type(b)
 
 
-def is_not_equal_types(a, b):
-    return not is_equal_types(a, b)
+def types_is_not_equal(a, b):
+    return not types_is_equal(a, b)
 
 
 def is_primitive(o):

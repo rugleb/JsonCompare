@@ -124,24 +124,24 @@ class UtilsTestCase(unittest.TestCase):
         self.assertFalse(is_str([]))
         self.assertTrue(is_not_str([]))
 
-    def test_is_equal_types_function(self):
-        self.assertTrue(is_equal_types({}, {}))
-        self.assertTrue(is_equal_types([], []))
-        self.assertTrue(is_equal_types(True, False))
-        self.assertTrue(is_equal_types(None, None))
-        self.assertTrue(is_equal_types('str', 'str'))
+    def test_types_is_equal_function(self):
+        self.assertTrue(types_is_equal({}, {}))
+        self.assertTrue(types_is_equal([], []))
+        self.assertTrue(types_is_equal(True, False))
+        self.assertTrue(types_is_equal(None, None))
+        self.assertTrue(types_is_equal('str', 'str'))
 
-        self.assertFalse(is_equal_types(True, 1))
-        self.assertTrue(is_not_equal_types(True, 1))
+        self.assertFalse(types_is_equal(True, 1))
+        self.assertTrue(types_is_not_equal(True, 1))
 
-        self.assertFalse(is_equal_types(True, None))
-        self.assertTrue(is_not_equal_types(True, None))
+        self.assertFalse(types_is_equal(True, None))
+        self.assertTrue(types_is_not_equal(True, None))
 
-        self.assertFalse(is_equal_types({}, []))
-        self.assertTrue(is_not_equal_types({}, []))
+        self.assertFalse(types_is_equal({}, []))
+        self.assertTrue(types_is_not_equal({}, []))
 
-        self.assertFalse(is_equal_types('1', 1))
-        self.assertTrue(is_not_equal_types('1', 1))
+        self.assertFalse(types_is_equal('1', 1))
+        self.assertTrue(types_is_not_equal('1', 1))
 
     def test_is_primitive_function(self):
         self.assertTrue(is_primitive(1))
