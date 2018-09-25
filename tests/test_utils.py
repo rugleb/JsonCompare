@@ -63,3 +63,22 @@ class UtilsTestCase(unittest.TestCase):
 
         self.assertFalse(is_list(None))
         self.assertTrue(is_not_list(None))
+
+    def test_is_equal_types_function(self):
+        self.assertTrue(is_equal_types({}, {}))
+        self.assertTrue(is_equal_types([], []))
+        self.assertTrue(is_equal_types(True, False))
+        self.assertTrue(is_equal_types(None, None))
+        self.assertTrue(is_equal_types('str', 'str'))
+
+        self.assertFalse(is_equal_types(True, 1))
+        self.assertTrue(is_not_equal_types(True, 1))
+
+        self.assertFalse(is_equal_types(True, None))
+        self.assertTrue(is_not_equal_types(True, None))
+
+        self.assertFalse(is_equal_types({}, []))
+        self.assertTrue(is_not_equal_types({}, []))
+
+        self.assertFalse(is_equal_types('1', 1))
+        self.assertTrue(is_not_equal_types('1', 1))

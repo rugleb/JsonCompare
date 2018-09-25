@@ -20,3 +20,11 @@ def is_list(o):
 
 def is_not_list(o):
     return not is_list(o)
+
+
+def is_equal_types(first, second):
+    return type(first) is type(second)
+
+
+def is_not_equal_types(first, second):
+    return not is_equal_types(first, second)
