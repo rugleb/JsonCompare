@@ -76,3 +76,13 @@ def key_exist(k, d):
 
 def key_not_exist(k, d):
     return not key_exist(k, d)
+
+
+def values_equal(a, b):
+    if types_is_not_equal(a, b):
+        return False
+    return a == b
+
+
+def values_not_equal(a, b):
+    return not values_equal(a, b)
