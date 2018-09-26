@@ -1,3 +1,6 @@
+import os
+
+
 def is_dict(o):
     return type(o) is dict
 
@@ -105,3 +108,7 @@ def concat(d1, d2):
     for x in (d1, d2):
         d.update(x)
     return d
+
+
+def directory(file):
+    return os.path.dirname(os.path.abspath(file))
