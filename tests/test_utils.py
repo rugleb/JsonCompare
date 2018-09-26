@@ -194,3 +194,9 @@ class UtilsTestCase(unittest.TestCase):
         self.assertEqual(cls_name(True), 'bool')
         self.assertEqual(cls_name([]), 'list')
         self.assertEqual(cls_name({}), 'dict')
+
+    def test_concat_function(self):
+        a = {'a': 1, 'b': {'c': {'d': 1}, 'd': 5}, 'c': 2}
+        b = {'a': 1, 'b': {'c': {'d': 2}, 'd': 6}, 'c': 3}
+        c = {'a': 1, 'b': {'c': {'d': 2}, 'd': 6}, 'c': 3}
+        self.assertEqual(concat(a, b), c)

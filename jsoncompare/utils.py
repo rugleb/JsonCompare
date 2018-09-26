@@ -98,3 +98,10 @@ def values_not_equal(a, b):
 
 def cls_name(o):
     return type(o).__name__
+
+
+def concat(d1, d2):
+    d = {}
+    for x in (d1, d2):
+        d.update(x)
+    return d
