@@ -125,23 +125,23 @@ class UtilsTestCase(unittest.TestCase):
         self.assertTrue(is_not_str([]))
 
     def test_types_is_equal_function(self):
-        self.assertTrue(types_is_equal({}, {}))
-        self.assertTrue(types_is_equal([], []))
-        self.assertTrue(types_is_equal(True, False))
-        self.assertTrue(types_is_equal(None, None))
-        self.assertTrue(types_is_equal('str', 'str'))
+        self.assertTrue(types_equal({}, {}))
+        self.assertTrue(types_equal([], []))
+        self.assertTrue(types_equal(True, False))
+        self.assertTrue(types_equal(None, None))
+        self.assertTrue(types_equal('str', 'str'))
 
-        self.assertFalse(types_is_equal(True, 1))
-        self.assertTrue(types_is_not_equal(True, 1))
+        self.assertFalse(types_equal(True, 1))
+        self.assertTrue(types_not_equal(True, 1))
 
-        self.assertFalse(types_is_equal(True, None))
-        self.assertTrue(types_is_not_equal(True, None))
+        self.assertFalse(types_equal(True, None))
+        self.assertTrue(types_not_equal(True, None))
 
-        self.assertFalse(types_is_equal({}, []))
-        self.assertTrue(types_is_not_equal({}, []))
+        self.assertFalse(types_equal({}, []))
+        self.assertTrue(types_not_equal({}, []))
 
-        self.assertFalse(types_is_equal('1', 1))
-        self.assertTrue(types_is_not_equal('1', 1))
+        self.assertFalse(types_equal('1', 1))
+        self.assertTrue(types_not_equal('1', 1))
 
     def test_is_primitive_function(self):
         self.assertTrue(is_primitive(1))
@@ -186,3 +186,11 @@ class UtilsTestCase(unittest.TestCase):
         self.assertTrue(values_not_equal(1, True))
         self.assertTrue(values_not_equal([], set([])))
         self.assertTrue(values_not_equal(False, None))
+
+    def test_cls_name_function(self):
+        self.assertEqual(cls_name(1), 'int')
+        self.assertEqual(cls_name('str'), 'str')
+        self.assertEqual(cls_name(1.0), 'float')
+        self.assertEqual(cls_name(True), 'bool')
+        self.assertEqual(cls_name([]), 'list')
+        self.assertEqual(cls_name({}), 'dict')

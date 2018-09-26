@@ -46,12 +46,12 @@ def is_not_list(o):
     return not is_list(o)
 
 
-def types_is_equal(a, b):
+def types_equal(a, b):
     return type(a) is type(b)
 
 
-def types_is_not_equal(a, b):
-    return not types_is_equal(a, b)
+def types_not_equal(a, b):
+    return not types_equal(a, b)
 
 
 def is_primitive(o):
@@ -87,10 +87,14 @@ def index_not_exist(i, l):
 
 
 def values_equal(a, b):
-    if types_is_not_equal(a, b):
+    if types_not_equal(a, b):
         return False
     return a == b
 
 
 def values_not_equal(a, b):
     return not values_equal(a, b)
+
+
+def cls_name(o):
+    return type(o).__name__
