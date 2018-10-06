@@ -18,3 +18,12 @@ class Compare:
         with open('data/config.json', 'w') as fp:
             config = json.load(fp)
         self.set_config(config)
+
+    def check(self, expected, actual):
+        pass
+
+    def diff(self, expected, actual):
+        pass
+
+    def report(self, diff):
+        pass
