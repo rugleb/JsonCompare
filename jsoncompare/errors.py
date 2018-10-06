@@ -26,3 +26,7 @@ class Error(ABC):
 
 class TypesNotEqual(Error):
     template = 'Types not equal. Expected: <{e}>, received: <{r}>'
+
+
+class ValuesNotEqual(Error):
+    template = 'Values not equal. Expected: <{e}>, received: <{r}>'
