@@ -1,3 +1,4 @@
+import os
 import json
 import copy
 
@@ -16,7 +17,9 @@ class Compare:
         self.config = config
 
     def set_default_config(self):
-        with open('data/config.json', 'w') as fp:
+        directory = os.path.dirname(__file__)
+        path = '{}/{}'.format(directory, 'data/config.json')
+        with open(path, 'r') as fp:
             config = json.load(fp)
         self.set_config(config)
 
