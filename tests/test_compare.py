@@ -8,3 +8,4 @@ class CompareTestCase(unittest.TestCase):
     def test_factory(self):
         c = Compare()
         self.assertIsInstance(c, Compare)
+        self.assertIsInstance(c.config, dict)

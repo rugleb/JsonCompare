@@ -11,15 +11,14 @@ class Compare:
 
     def set_config(self, config=None):
         if config is None:
-            self.set_default_config()
+            config = self.get_default_config()
         self.config = config
 
-    def set_default_config(self):
-        directory = os.path.dirname(__file__)
-        path = '{}/{}'.format(directory, 'data/config.json')
+    @classmethod
+    def get_default_config(cls):
+        path = os.path.dirname(__file__) + '/data/config.json'
         with open(path, 'r') as fp:
-            config = json.load(fp)
-        self.set_config(config)
+            return json.load(fp)
 
     def check(self, expected, actual):
         pass
