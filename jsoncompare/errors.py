@@ -11,13 +11,14 @@ class Error(ABC):
         self.expected = expected
         self.received = received
 
+    @property
     def message(self):
         msg = self.template.format(e=self.expected, r=self.received)
         return msg
 
-    def report(self):
+    def to_dict(self):
         return {
-            '_message': self.message(),
+            '_message': self.message,
             '_expected': self.expected,
             '_received': self.received,
         }
