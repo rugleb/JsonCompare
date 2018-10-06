@@ -3,7 +3,7 @@
         "float": {
             "allow_round": 2
         },
-        "str": {
+        "list": {
             "check_length": true
         }
     },
