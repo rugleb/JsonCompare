@@ -1,4 +1,6 @@
 import json
+import copy
+from abc import ABC, abstractmethod
 
 from .utils import *
 
@@ -27,3 +29,7 @@ class Compare:
 
     def report(self, diff):
         pass
+
+    @classmethod
+    def _prepare(cls, x):
+        return copy.deepcopy(x)
