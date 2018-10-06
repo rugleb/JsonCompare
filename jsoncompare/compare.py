@@ -2,9 +2,21 @@ import os
 import json
 import copy
 
+from jsoncompare.errors import TypesNotEqual
+from jsoncompare.differs import Int, Str, Bool, Dict, List, Diff, Float
+
 
 class Compare:
     config = {}
+
+    types = {
+        int: Int,
+        str: Str,
+        bool: Bool,
+        dict: Dict,
+        list: List,
+        float: Float,
+    }
 
     def __init__(self, config=None):
         self.set_config(config)
@@ -21,14 +33,20 @@ class Compare:
             return json.load(fp)
 
     def check(self, expected, actual):
-        pass
+        e = self.prepare(expected)
+        a = self.prepare(actual)
+        return self.diff(e, a) == {}
 
-    def diff(self, expected, actual):
-        pass
+    def diff(self, e, a):
+        t = type(e)
+        if not isinstance(a, t):
+            return TypesNotEqual(e, a)
+        obj = self.types.get(t, Diff)
+        return obj.diff(e, a)
 
     def report(self, diff):
         pass
 
     @classmethod
-    def _prepare(cls, x):
+    def prepare(cls, x):
         return copy.deepcopy(x)
