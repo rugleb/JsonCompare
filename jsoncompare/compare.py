@@ -3,7 +3,7 @@ import json
 import copy
 
 from jsoncompare.Config import Config
-from jsoncompare.errors import TypesNotEqual, ValuesNotEqual, KeyNotExist, LengthNotEqual, ValueNotFound
+from jsoncompare.errors import Error, TypesNotEqual, ValuesNotEqual, KeyNotExist, LengthNotEqual, ValueNotFound
 
 
 NO_DIFF = {}
@@ -114,20 +114,23 @@ class Compare:
             if t in (int, str, bool, float):
                 d[i] = ValueNotFound(v, None)
             elif t is dict:
-                d[i] = self._dict_diff(v, {})
-                for ii, vv in enumerate(a):
-                    if type(vv) is dict:
-                        dd = self._dict_diff(v, vv)
-                        if len(dd) <= len(d[i]):
-                            d[i] = dd
+                method = self._dict_diff
+                d[i] = self._max_diff(v, a, method)
             elif t is list:
-                d[i] = self._list_diff(v, [])
-                for ii, vv in enumerate(a):
-                    if type(vv) is list:
-                        dd = self._list_diff(v, vv)
-                        if len(dd) <= len(d[i]):
-                            d[i] = dd
+                method = self._list_diff
+                d[i] = self._max_diff(v, a, method)
         return self._without_empties(d)
+
+    @classmethod
+    def _max_diff(cls, e, l, method):
+        t = type(e)
+        d = method(e, t())
+        for i, v in enumerate(l):
+            if type(v) is t:
+                dd = method(e, v)
+                if len(dd) <= len(d):
+                    d = dd
+        return d
 
     @classmethod
     def _list_len_diff(cls, e, a):
