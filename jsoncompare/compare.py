@@ -2,6 +2,7 @@ import os
 import json
 import copy
 
+from jsoncompare.Config import Config
 from jsoncompare.errors import TypesNotEqual, ValuesNotEqual, KeyNotExist, LengthNotEqual, ValueNotFound
 
 
@@ -14,7 +15,7 @@ class Compare:
     def set_config(self, config=None):
         if config is None:
             config = self.get_default_config()
-        self.config = config
+        self.config = Config(config)
 
     @classmethod
     def get_default_config(cls):
@@ -67,14 +68,19 @@ class Compare:
         if a == e:
             return {}
         if self._can_rounded_float():
-            e = round(e, 2)
-            a = round(a, 2)
+            p = self._float_precision()
+            e, a = round(e, p), round(a, p)
             if a == e:
                 return {}
         return ValuesNotEqual(e, a)
 
     def _can_rounded_float(self):
-        return True
+        p = self._float_precision()
+        return p is int
+
+    def _float_precision(self):
+        path = 'types.float.allow_round'
+        return self.config.get(path)
 
     def _dict_diff(self, e, a):
         d = {}
@@ -93,7 +99,8 @@ class Compare:
         return self._without_empties(d)
 
     def _need_compare_length(self):
-        return True
+        path = 'types.list.check_length'
+        return self.config.get(path) is True
 
     def _list_content_diff(self, e, a):
         d = {}
