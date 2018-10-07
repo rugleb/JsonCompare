@@ -29,7 +29,9 @@ class Compare:
     def check(self, expected, actual):
         e = self.prepare(expected)
         a = self.prepare(actual)
-        return self._diff(e, a) == NO_DIFF
+        diff = self._diff(e, a)
+        self.report(diff)
+        return diff
 
     def _diff(self, e, a):
         t = type(e)
