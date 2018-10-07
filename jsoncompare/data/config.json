@@ -13,7 +13,7 @@
             "name": "diff.json",
             "indent": 4,
             "skipkeys": true,
-            "allow_none": true,
+            "allow_nan": true,
             "ensure_ascii": true
         }
     }
