@@ -2,7 +2,7 @@ import os
 import json
 import copy
 
-from jsoncompare.Config import Config
+from jsoncompare.config import Config
 from jsoncompare.errors import Error, TypesNotEqual, ValuesNotEqual, KeyNotExist, LengthNotEqual, ValueNotFound
 
 
