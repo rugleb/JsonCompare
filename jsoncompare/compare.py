@@ -29,7 +29,7 @@ class Compare:
     def check(self, expected, actual):
         e = self.prepare(expected)
         a = self.prepare(actual)
-        return self._diff(e, a) == {}
+        return self._diff(e, a) == NO_DIFF
 
     def _diff(self, e, a):
         t = type(e)
@@ -142,7 +142,26 @@ class Compare:
         return {k: d[k] for k in d if d[k] != NO_DIFF}
 
     def report(self, diff):
+        if self._need_write_to_console():
+            self._write_to_console(diff)
+        if self._need_write_to_file():
+            self._write_to_file(diff)
+
+    def _write_to_console(self, d):
         pass
+
+    def _write_to_file(self, d):
+        config = self.config.get('output.file')
+        with open(config.get('name'), 'w') as fp:
+            json.dump(d, fp, **config)
+
+    def _need_write_to_console(self):
+        path = 'output.console'
+        return self.config.get(path) is True
+
+    def _need_write_to_file(self):
+        path = 'output.file.name'
+        return self.config.get(path) is str
 
     @classmethod
     def prepare(cls, x):
