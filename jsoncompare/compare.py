@@ -6,6 +6,9 @@ from jsoncompare.Config import Config
 from jsoncompare.errors import TypesNotEqual, ValuesNotEqual, KeyNotExist, LengthNotEqual, ValueNotFound
 
 
+NO_DIFF = {}
+
+
 class Compare:
     config = {}
 
@@ -44,34 +47,34 @@ class Compare:
             return self._dict_diff(e, a)
         if t is list:
             return self._list_diff(e, a)
-        return {}
+        return NO_DIFF
 
     @classmethod
     def _int_diff(cls, e, a):
         if a == e:
-            return {}
+            return NO_DIFF
         return ValuesNotEqual(e, a)
 
     @classmethod
     def _bool_diff(cls, e, a):
         if a is e:
-            return {}
+            return NO_DIFF
         return ValuesNotEqual(e, a)
 
     @classmethod
     def _str_diff(cls, e, a):
         if a == e:
-            return {}
+            return NO_DIFF
         return ValuesNotEqual(e, a)
 
     def _float_diff(self, e, a):
         if a == e:
-            return {}
+            return NO_DIFF
         if self._can_rounded_float():
             p = self._float_precision()
             e, a = round(e, p), round(a, p)
             if a == e:
-                return {}
+                return NO_DIFF
         return ValuesNotEqual(e, a)
 
     def _can_rounded_float(self):
@@ -131,12 +134,12 @@ class Compare:
         e_len = len(e)
         a_len = len(a)
         if a_len == e_len:
-            return {}
+            return NO_DIFF
         return LengthNotEqual(e_len, a_len)
 
     @classmethod
     def _without_empties(cls, d):
-        return {k: d[k] for k in d if d[k] != {}}
+        return {k: d[k] for k in d if d[k] != NO_DIFF}
 
     def report(self, diff):
         pass
