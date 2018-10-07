@@ -79,7 +79,7 @@ class Compare:
 
     def _can_rounded_float(self):
         p = self._float_precision()
-        return p is int
+        return type(p) is int
 
     def _float_precision(self):
         path = 'types.float.allow_round'
@@ -152,7 +152,7 @@ class Compare:
 
     def _write_to_file(self, d):
         config = self.config.get('output.file')
-        with open(config.get('name'), 'w') as fp:
+        with open(config.pop('name'), 'w') as fp:
             json.dump(d, fp, **config)
 
     def _need_write_to_console(self):
@@ -161,7 +161,8 @@ class Compare:
 
     def _need_write_to_file(self):
         path = 'output.file.name'
-        return self.config.get(path) is str
+        file_name = self.config.get(path)
+        return type(file_name) is str
 
     @classmethod
     def prepare(cls, x):
