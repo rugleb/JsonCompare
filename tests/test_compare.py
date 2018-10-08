@@ -1,7 +1,8 @@
 import unittest
 
 from jsoncompare import Compare
-from jsoncompare.errors import ValuesNotEqual, TypesNotEqual, KeyNotExist, ValueNotFound, LengthNotEqual
+from jsoncompare.errors import ValuesNotEqual, TypesNotEqual, KeyNotExist, \
+    ValueNotFound, LengthNotEqual
 
 
 class CompareTestCase(unittest.TestCase):
@@ -66,3 +67,7 @@ class CompareTestCase(unittest.TestCase):
                 3: ValueNotFound(True, None).explain()
             }
         })
+
+
+if __name__ == '__main__':
+    unittest.main()
