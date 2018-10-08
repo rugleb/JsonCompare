@@ -1,7 +1,6 @@
 import unittest
 
-from jsoncompare import Compare
-from jsoncompare.errors import ValuesNotEqual, TypesNotEqual, KeyNotExist, \
+from jsoncompare import Compare, NO_DIFF, ValuesNotEqual, TypesNotEqual, KeyNotExist, \
     ValueNotFound, LengthNotEqual
 
 
@@ -9,31 +8,31 @@ class CompareTestCase(unittest.TestCase):
 
     def test_compare_int(self):
         diff = Compare().check(1, 1)
-        self.assertEqual(diff, {})
+        self.assertEqual(diff, NO_DIFF)
 
         diff = Compare().check(1, 2)
         self.assertEqual(diff, ValuesNotEqual(1, 2).explain())
 
     def test_compare_str(self):
         diff = Compare().check('str', 'str')
-        self.assertEqual(diff, {})
+        self.assertEqual(diff, NO_DIFF)
 
         diff = Compare().check('str1', 'str2')
         self.assertEqual(diff, ValuesNotEqual('str1', 'str2').explain())
 
     def test_compare_float(self):
         diff = Compare().check(1.2, 1.2)
-        self.assertEqual(diff, {})
+        self.assertEqual(diff, NO_DIFF)
 
         diff = Compare().check(1.23456, 1.23)
-        self.assertEqual(diff, {})
+        self.assertEqual(diff, NO_DIFF)
 
         diff = Compare().check(1.2, 1.3)
         self.assertEqual(diff, ValuesNotEqual(1.2, 1.3).explain())
 
     def test_compare_bool(self):
         diff = Compare().check(True, True)
-        self.assertEqual(diff, {})
+        self.assertEqual(diff, NO_DIFF)
 
         diff = Compare().check(True, False)
         self.assertEqual(diff, ValuesNotEqual(True, False).explain())
@@ -43,7 +42,7 @@ class CompareTestCase(unittest.TestCase):
         a = {'int': 2, 'str': 'Hi', 'float': 1}
 
         diff = Compare().check(e, e)
-        self.assertEqual(diff, {})
+        self.assertEqual(diff, NO_DIFF)
 
         diff = Compare().check(e, a)
         self.assertEqual(diff, {
@@ -57,7 +56,7 @@ class CompareTestCase(unittest.TestCase):
         a = [1.23, 3, 'three', False, None]
 
         diff = Compare().check(e, e)
-        self.assertEqual(diff, {})
+        self.assertEqual(diff, NO_DIFF)
 
         diff = Compare().check(e, a)
         self.assertEqual(diff, {
@@ -65,7 +64,7 @@ class CompareTestCase(unittest.TestCase):
             '_content': {
                 1: ValueNotFound(2, None).explain(),
                 3: ValueNotFound(True, None).explain(),
-            }
+            },
         })
 
 
