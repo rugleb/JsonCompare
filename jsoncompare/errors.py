@@ -18,7 +18,7 @@ class Error(ABC):
         msg = self.template.format(e=self.expected, r=self.received)
         return msg
 
-    def to_dict(self):
+    def explain(self):
         return {
             '_message': self.message,
             '_expected': self.expected,
