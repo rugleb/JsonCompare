@@ -4,7 +4,7 @@ import copy
 
 from .config import Config
 from .errors import TypesNotEqual, ValuesNotEqual, KeyNotExist, \
-    LengthNotEqual, ValueNotFound
+    LengthsNotEqual, ValueNotFound
 
 
 NO_DIFF = {}
@@ -141,7 +141,7 @@ class Compare:
         a_len = len(a)
         if a_len == e_len:
             return NO_DIFF
-        return LengthNotEqual(e_len, a_len).explain()
+        return LengthsNotEqual(e_len, a_len).explain()
 
     @classmethod
     def _without_empties(cls, d):

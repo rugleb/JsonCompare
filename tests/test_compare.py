@@ -1,7 +1,7 @@
 import unittest
 
 from jsoncompare import Compare, NO_DIFF, ValuesNotEqual, TypesNotEqual, KeyNotExist, \
-    ValueNotFound, LengthNotEqual
+    ValueNotFound, LengthsNotEqual
 
 
 class CompareTestCase(unittest.TestCase):
@@ -60,7 +60,7 @@ class CompareTestCase(unittest.TestCase):
 
         diff = Compare().check(e, a)
         self.assertEqual(diff, {
-            '_length': LengthNotEqual(len(e), len(a)).explain(),
+            '_length': LengthsNotEqual(len(e), len(a)).explain(),
             '_content': {
                 1: ValueNotFound(2, None).explain(),
                 3: ValueNotFound(True, None).explain(),
