@@ -1,7 +1,5 @@
 from abc import ABC
 
-from jsoncompare.utils import cls_name
-
 
 class Error(ABC):
     expected = None
@@ -29,9 +27,9 @@ class Error(ABC):
 class TypesNotEqual(Error):
     template = 'Types not equal. Expected: <{e}>, received: <{r}>'
 
-    def __init__(self, expected, actual):
-        e = cls_name(expected)
-        a = cls_name(actual)
+    def __init__(self, e, a):
+        e = type(e).__name__
+        a = type(a).__name__
         super().__init__(e, a)
 
 
