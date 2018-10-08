@@ -2,8 +2,9 @@ import os
 import json
 import copy
 
-from jsoncompare.config import Config
-from jsoncompare.errors import Error, TypesNotEqual, ValuesNotEqual, KeyNotExist, LengthNotEqual, ValueNotFound
+from .config import Config
+from .errors import TypesNotEqual, ValuesNotEqual, KeyNotExist, \
+    LengthNotEqual, ValueNotFound
 
 
 NO_DIFF = {}
