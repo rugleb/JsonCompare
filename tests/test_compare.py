@@ -8,7 +8,7 @@ class CompareTestCase(unittest.TestCase):
     def test_factory(self):
         c = Compare()
         self.assertIsInstance(c, Compare)
-        self.assertIsInstance(c.config, dict)
+        self.assertIsInstance(c.config.config, dict)
 
     def test_compare(self):
         e = {'int': 1, 'str': 'Hello, world', 'float': 1.2345, 'bool': True}

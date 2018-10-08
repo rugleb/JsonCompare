@@ -36,7 +36,7 @@ class Compare:
     def _diff(self, e, a):
         t = type(e)
         if not isinstance(a, t):
-            return TypesNotEqual(e, a)
+            return TypesNotEqual(e, a).explain()
         if t is int:
             return self._int_diff(e, a)
         if t is str:
@@ -55,19 +55,19 @@ class Compare:
     def _int_diff(cls, e, a):
         if a == e:
             return NO_DIFF
-        return ValuesNotEqual(e, a)
+        return ValuesNotEqual(e, a).explain()
 
     @classmethod
     def _bool_diff(cls, e, a):
         if a is e:
             return NO_DIFF
-        return ValuesNotEqual(e, a)
+        return ValuesNotEqual(e, a).explain()
 
     @classmethod
     def _str_diff(cls, e, a):
         if a == e:
             return NO_DIFF
-        return ValuesNotEqual(e, a)
+        return ValuesNotEqual(e, a).explain()
 
     def _float_diff(self, e, a):
         if a == e:
@@ -77,7 +77,7 @@ class Compare:
             e, a = round(e, p), round(a, p)
             if a == e:
                 return NO_DIFF
-        return ValuesNotEqual(e, a)
+        return ValuesNotEqual(e, a).explain()
 
     def _can_rounded_float(self):
         p = self._float_precision()
@@ -91,7 +91,7 @@ class Compare:
         d = {}
         for k in e:
             if k not in a:
-                d[k] = KeyNotExist(k, None)
+                d[k] = KeyNotExist(k, None).explain()
             else:
                 d[k] = self._diff(e[k], a[k])
         return self._without_empties(d)
@@ -114,7 +114,7 @@ class Compare:
                 continue
             t = type(v)
             if t in (int, str, bool, float):
-                d[i] = ValueNotFound(v, None)
+                d[i] = ValueNotFound(v, None).explain()
             elif t is dict:
                 method = self._dict_diff
                 d[i] = self._max_diff(v, a, method)
@@ -140,7 +140,7 @@ class Compare:
         a_len = len(a)
         if a_len == e_len:
             return NO_DIFF
-        return LengthNotEqual(e_len, a_len)
+        return LengthNotEqual(e_len, a_len).explain()
 
     @classmethod
     def _without_empties(cls, d):
