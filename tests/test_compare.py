@@ -29,7 +29,7 @@ class CompareTestCase(unittest.TestCase):
         self.assertEqual(diff, {})
 
         diff = Compare().check(1.2, 1.3)
-        self.assertEqual(diff, ValuesNotEqual)
+        self.assertEqual(diff, ValuesNotEqual(1.2, 1.3).explain())
 
     def test_compare_bool(self):
         diff = Compare().check(True, True)
@@ -64,7 +64,7 @@ class CompareTestCase(unittest.TestCase):
             '_length': LengthNotEqual(len(e), len(a)).explain(),
             '_content': {
                 1: ValueNotFound(2, None).explain(),
-                3: ValueNotFound(True, None).explain()
+                3: ValueNotFound(True, None).explain(),
             }
         })
 
