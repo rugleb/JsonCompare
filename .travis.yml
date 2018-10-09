@@ -9,3 +9,9 @@ install:
 
 script:
   - python3 -m unittest
+
+deploy:
+  provider: pypi
+  user: rugleb
+  password:
+    secure: C7gwa0JqBb7F0AgHDx8MDmhRyq+PPge98uQHQkxiCHAdaUZ5BPFyaKGfJzvvdTYcNXlBHe2IoJ5+x6qg7YKNgnScnyW2Sh/t6zacI2Q4g8gHYsC68i5Tp3Uc2OdhNy6talYS1t7xaP/pW9vEhwmTQEHIpVEoB4C/6EljJI+sn7/xOgumkHOpg5yc2sRhQVhGEprat7D/K1zbGr/0+j+EaXQb7Sn/1u0I/Ev4S6uRKtG8yNudUUVbWYkm1Nbtx9kEVePaPrdZkiiJQ6wgtJDqEuVtm2NjmizU8+L4Y15Vtz3YezfGU133mFXoNzAtklRB/3cLoEDao9XYgi5eQGKvk2dKc3mV/3FTRNc2QvGeZAg3x+EvdsNrvUP2c5XdDQ1p8fT8iTd2CVmWL11wGPHnYbvmeYbWF17i7h3wrhflMmETQZxDC1wmA5GU+m1MDxjmuiHYyyIWeeMq3I69yR7/zyiNYor+cHoD99AFSUqysINoXCX8LzFpTYogN+o3Upkn/XfPp9QbPnWbmT8tyN1JvYFiIPZd6NR5F/sZHMsdJJ+GkyxogqOYH+1yKIX1TMFjUqZM9sMjgHwNrCtRQR0l/n+/KyV1heK9xjjV3cKQGdhRZp7Zt/K2yK5FBpP2HnjaSVGgEzyb71+oUgDJuZb1INhgQnI7u0QoGJji8koaLd8=
