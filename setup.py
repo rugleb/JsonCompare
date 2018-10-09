@@ -4,7 +4,7 @@ with open('README.md', 'r') as fd:
     long_description = fd.read()
 
 setuptools.setup(
-    name='jsoncompare',
+    name='comparejson',
     version='0.0.2',
     author='Gleb Karpushkin',
     author_email='rugleb@gmail.com',
