@@ -1,0 +1,20 @@
+{
+    "creator": [
+        "age"
+    ],
+    "project": {
+        "description": "*",
+        "version": {
+            "_values": [
+                3.6
+            ]
+        }
+    },
+    "os": {
+        "contributors": {
+            "_list": [
+                "name"
+            ]
+        }
+    }
+}
