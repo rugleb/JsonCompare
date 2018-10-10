@@ -67,6 +67,13 @@ class CompareTestCase(unittest.TestCase):
             },
         })
 
+    def test_prepare_method(self):
+        e = [1, 2, 3, 4]
+        p = Compare().prepare(e)
+
+        self.assertTrue(e == p)
+        self.assertFalse(e is p)
+
 
 if __name__ == '__main__':
     unittest.main()
