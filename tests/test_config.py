@@ -30,6 +30,10 @@ class ConfigTestCase(unittest.TestCase):
         path = 'os'
         self.assertEqual(self.config.get(path), 'linux')
 
+    def test_merge_method(self):
+        self.config.merge({'os': 'windows'})
+        self.assertEqual(self.config.get('os'), 'windows')
+
 
 if __name__ == '__main__':
     unittest.main()
