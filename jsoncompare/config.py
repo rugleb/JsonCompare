@@ -1,6 +1,3 @@
-from copy import deepcopy
-
-
 class Config:
     config = {}
 
@@ -8,11 +5,10 @@ class Config:
         self.config = config
 
     def get(self, path):
-        keys = path.split('.')
-        value = deepcopy(self.config)
-        while keys and value is not None:
-            value = value.get(keys.pop(0))
-        return value
+        value = self.config
+        for key in path.split('.'):
+            value = value.get(key, {})
+        return value or None
 
     def merge(self, config):
         self.config.update(config)
