@@ -72,7 +72,7 @@ class CompareTestCase(unittest.TestCase):
         p = Compare().prepare(e)
 
         self.assertTrue(e == p)
-        self.assertFalse(e is p)
+        self.assertTrue(e is not p)
 
 
 if __name__ == '__main__':
