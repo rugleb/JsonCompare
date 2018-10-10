@@ -1,0 +1,45 @@
+{
+    "creator": {
+        "name": "Gleb Karpushkin",
+        "email": "rugleb@gmail.com",
+        "age": 20,
+        "github": "https://github.com/rugleb",
+        "weight": 82.1234
+    },
+    "project": {
+        "name": "jsoncompare",
+        "license": "Apache 2",
+        "description": "JSON-Comparator",
+        "language": {
+            "name": "python",
+            "versions": [
+                3.4,
+                3.5
+            ]
+        },
+        "os": [
+            {
+                "name": "ubuntu",
+                "version": 16
+            },
+            {
+                "name": "windows",
+                "version": 10
+            }
+        ]
+    },
+    "contributors": [
+        {
+            "id": 1,
+            "name": "Super Hulk"
+        },
+        {
+            "id": 2,
+            "name": "Iron man 2"
+        },
+        {
+            "id": 3,
+            "name": "Napoleon"
+        }
+    ]
+}
