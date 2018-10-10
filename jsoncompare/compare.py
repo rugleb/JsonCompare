@@ -117,11 +117,9 @@ class Compare:
             if t in (int, str, bool, float):
                 d[i] = ValueNotFound(v, None).explain()
             elif t is dict:
-                method = self._dict_diff
-                d[i] = self._max_diff(v, a, method)
+                d[i] = self._max_diff(v, a, self._dict_diff)
             elif t is list:
-                method = self._list_diff
-                d[i] = self._max_diff(v, a, method)
+                d[i] = self._max_diff(v, a, self._list_diff)
         return self._without_empties(d)
 
     @classmethod
@@ -137,11 +135,10 @@ class Compare:
 
     @classmethod
     def _list_len_diff(cls, e, a):
-        e_len = len(e)
-        a_len = len(a)
-        if a_len == e_len:
+        e, a = len(e), len(a)
+        if e == a:
             return NO_DIFF
-        return LengthsNotEqual(e_len, a_len).explain()
+        return LengthsNotEqual(e, a).explain()
 
     @classmethod
     def _without_empties(cls, d):
