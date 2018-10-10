@@ -153,8 +153,10 @@ class Compare:
         if self._need_write_to_file():
             self._write_to_file(diff)
 
-    def _write_to_console(self, d):
-        pass
+    @classmethod
+    def _write_to_console(cls, d):
+        msg = json.dumps(d, indent=4)
+        print(msg)
 
     def _write_to_file(self, d):
         config = self.config.get('output.file')
