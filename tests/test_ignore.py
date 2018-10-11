@@ -8,6 +8,7 @@ from jsoncompare.ignore import Ignore
 class IgnoreTestCase(unittest.TestCase):
     obj = None
     rules = None
+    transformed = None
 
     def setUp(self):
         curr_dir = os.path.dirname(__file__)
@@ -15,6 +16,8 @@ class IgnoreTestCase(unittest.TestCase):
             self.rules = json.load(fp)
         with open('{}/{}'.format(curr_dir, 'data/expected.json'), 'r') as fp:
             self.obj = json.load(fp)
+        with open('{}/{}'.format(curr_dir, 'data/transformed.json'), 'r') as fp:
+            self.transformed = json.load(fp)
 
     def test_ignore_with_listable_rules(self):
         obj = {
@@ -153,6 +156,10 @@ class IgnoreTestCase(unittest.TestCase):
                 'b': 5,
             },
         ])
+
+    def test_super(self):
+        obj = Ignore.transform(self.obj, self.rules)
+        self.assertEqual(obj, self.transformed)
 
 
 if __name__ == '__main__':

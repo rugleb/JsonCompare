@@ -20,12 +20,9 @@ class Ignore(ABC):
                 obj = cls._apply_special_rule(key, obj, rule)
             elif type(rule) is str:
                 obj = cls._apply_stringable_rule(key, obj, rule)
-            elif type(rule) is list:
-                if key in obj:
-                    obj[key] = cls._apply_listable_rules(obj[key], rule)
-            elif type(rule) is dict:
-                if key in obj:
-                    obj[key] = cls._apply_dictable_rules(obj[key], rule)
+            else:
+                obj[key] = cls.transform(obj[key], rule)
+
         return obj
 
     @classmethod
