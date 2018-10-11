@@ -26,6 +26,16 @@ class IgnoreTestCase(unittest.TestCase):
             'c': 3,
         })
 
+    def test_ignore_with_dictable_rules(self):
+        obj = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+        rules = {'a': '*', 'd': '*', 'e': '*'}
+
+        obj = Ignore(rules).transform(obj)
+        self.assertEqual(obj, {
+            'b': 2,
+            'c': 3,
+        })
+
 
 if __name__ == '__main__':
     unittest.main()
