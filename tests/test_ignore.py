@@ -36,6 +36,26 @@ class IgnoreTestCase(unittest.TestCase):
             'c': 3,
         })
 
+    def test_ignore_with_sub_rule(self):
+        obj = {
+            'a': {'a': 1, 'b': 2, 'c': 3, 'd': 4},
+            'b': {'a': 1, 'b': 2, 'c': 3, 'd': 4},
+            'c': 3,
+            'd': 4,
+        }
+        rules = {
+            'a': ['b', 'd'],
+            'b': {'b': '*', 'd': '*'},
+            'd': '*',
+        }
+
+        obj = Ignore(rules).transform(obj)
+        self.assertEqual(obj, {
+            'a': {'a': 1, 'c': 3},
+            'b': {'a': 1, 'c': 3},
+            'c': 3,
+        })
+
 
 if __name__ == '__main__':
     unittest.main()
