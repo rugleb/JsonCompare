@@ -26,10 +26,10 @@ class IgnoreTestCase(unittest.TestCase):
         rules = [
             'a',
             'd',
-            'e'
+            'e',
         ]
 
-        obj = Ignore(rules).transform(obj)
+        obj = Ignore.transform(obj, rules)
         self.assertEqual(obj, {
             'b': 2,
             'c': 3,
@@ -40,7 +40,7 @@ class IgnoreTestCase(unittest.TestCase):
             'a': 1,
             'b': 2,
             'c': 3,
-            'd': 4
+            'd': 4,
         }
         rules = {
             'a': '*',
@@ -48,7 +48,7 @@ class IgnoreTestCase(unittest.TestCase):
             'e': '*'
         }
 
-        obj = Ignore(rules).transform(obj)
+        obj = Ignore.transform(obj, rules)
         self.assertEqual(obj, {
             'b': 2,
             'c': 3,
@@ -89,7 +89,7 @@ class IgnoreTestCase(unittest.TestCase):
             'd': '*',
         }
 
-        obj = Ignore(rules).transform(obj)
+        obj = Ignore.transform(obj, rules)
         self.assertEqual(obj, {
             'a': {
                 'a': 1,
@@ -118,7 +118,7 @@ class IgnoreTestCase(unittest.TestCase):
             ],
         }
 
-        obj = Ignore(rules).transform(obj)
+        obj = Ignore.transform(obj, rules)
         self.assertEqual(obj, [
             2,
             4,
@@ -144,7 +144,7 @@ class IgnoreTestCase(unittest.TestCase):
             ]
         }
 
-        obj = Ignore(rules).transform(obj, rules)
+        obj = Ignore.transform(obj, rules)
         self.assertEqual(obj, [
             {
                 'b': 2,

@@ -1,8 +1,7 @@
-class Ignore:
-    rules = None
+from abc import ABC
 
-    def __init__(self, rules):
-        self.rules = rules
+
+class Ignore(ABC):
 
     @classmethod
     def transform(cls, obj, rules):
