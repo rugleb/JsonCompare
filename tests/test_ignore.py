@@ -56,6 +56,17 @@ class IgnoreTestCase(unittest.TestCase):
             'c': 3,
         })
 
+    def test_ignore_with_values_key(self):
+        obj = [1, 2, 3, 4]
+        rules = {
+            '_values': [
+                1, 3,
+            ],
+        }
+
+        obj = Ignore(rules).transform(obj)
+        self.assertEqual(obj, [2, 4])
+
 
 if __name__ == '__main__':
     unittest.main()
