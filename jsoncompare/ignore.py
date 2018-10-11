@@ -1,6 +1,3 @@
-import json
-
-
 class Ignore:
     rules = None
 
@@ -26,7 +23,7 @@ class Ignore:
             elif t is dict:
                 o[k] = self._apply_dict_rules(o[k], r)
             elif t is str:
-                o = self._apply_str_rule(o, k, r)
+                self._apply_str_rule(o, k, r)
         return o
 
     @classmethod
@@ -34,18 +31,6 @@ class Ignore:
         return {k: o[k] for k in o if k not in rules}
 
     @classmethod
-    def _apply_str_rule(cls, o, k, rule):
+    def _apply_str_rule(cls, obj, key, rule):
         if rule == '*':
-            del o[k]
-        return o
-
-
-with open('data/rules.json', 'r') as fp:
-    ignore = json.load(fp)
-with open('data/expected.json', 'r') as fp:
-    obj = json.load(fp)
-
-i = Ignore(ignore)
-obj = i.transform(obj)
-
-pass
+            del obj[key]
