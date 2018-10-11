@@ -4,27 +4,29 @@ class Ignore:
     def __init__(self, rules):
         self.rules = rules
 
-    def transform(self, obj):
-        t = type(self.rules)
+    @classmethod
+    def transform(cls, obj, rules):
+        t = type(rules)
         if t is dict:
-            return self._apply_dictable_rules(obj, self.rules)
+            return cls._apply_dictable_rules(obj, rules)
         if t is list:
-            return self._apply_listable_rules(obj, self.rules)
+            return cls._apply_listable_rules(obj, rules)
         return obj
 
-    def _apply_dictable_rules(self, obj, rules):
+    @classmethod
+    def _apply_dictable_rules(cls, obj, rules):
         for key in rules:
             rule = rules[key]
-            if self._is_special_key(key):
-                obj = self._apply_special_rule(key, obj, rule)
+            if cls._is_special_key(key):
+                obj = cls._apply_special_rule(key, obj, rule)
             elif type(rule) is str:
-                obj = self._apply_stringable_rule(key, obj, rule)
+                obj = cls._apply_stringable_rule(key, obj, rule)
             elif type(rule) is list:
                 if key in obj:
-                    obj[key] = self._apply_listable_rules(obj[key], rule)
+                    obj[key] = cls._apply_listable_rules(obj[key], rule)
             elif type(rule) is dict:
                 if key in obj:
-                    obj[key] = self._apply_dictable_rules(obj[key], rule)
+                    obj[key] = cls._apply_dictable_rules(obj[key], rule)
         return obj
 
     @classmethod
@@ -42,7 +44,13 @@ class Ignore:
     def _apply_special_rule(cls, key, obj, rule):
         if key == '_values':
             return cls._ignore_values(obj, rule)
+        if key == '_list':
+            return cls._ignore_list_items(obj, rule)
         return obj
+
+    @classmethod
+    def _ignore_list_items(cls, obj, rule):
+        return [cls.transform(x, rule) for x in obj]
 
     @classmethod
     def _ignore_values(cls, obj, black_list):

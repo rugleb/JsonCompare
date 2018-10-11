@@ -124,6 +124,36 @@ class IgnoreTestCase(unittest.TestCase):
             4,
         ])
 
+    def test_ignore_with_list_key(self):
+        obj = [
+            {
+                'a': 1,
+                'b': 2,
+                'c': 3,
+            },
+            {
+                'a': 4,
+                'b': 5,
+                'c': 6,
+            },
+        ]
+        rules = {
+            '_list': [
+                'a',
+                'c',
+            ]
+        }
+
+        obj = Ignore(rules).transform(obj, rules)
+        self.assertEqual(obj, [
+            {
+                'b': 2,
+            },
+            {
+                'b': 5,
+            },
+        ])
+
 
 if __name__ == '__main__':
     unittest.main()
