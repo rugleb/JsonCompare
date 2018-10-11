@@ -15,21 +15,33 @@ class Ignore:
     def _apply_dictable_rules(self, obj, rules):
         for key in rules:
             rule = rules[key]
-            if key.startswith('_'):
-                if key == '_values':
-                    obj = self._ignore_values(obj, rule)
-                elif key == '_list':
-                    pass
+            if self._is_special_key(key):
+                obj = self._apply_special_rule(key, obj, rule)
             elif type(rule) is str:
-                if rule == '*':
-                    if key in obj:
-                        del obj[key]
+                obj = self._apply_stringable_rule(key, obj, rule)
             elif type(rule) is list:
                 if key in obj:
                     obj[key] = self._apply_listable_rules(obj[key], rule)
             elif type(rule) is dict:
                 if key in obj:
                     obj[key] = self._apply_dictable_rules(obj[key], rule)
+        return obj
+
+    @classmethod
+    def _apply_stringable_rule(cls, key, obj, rule):
+        if rule == '*':
+            if key in obj:
+                del obj[key]
+        return obj
+
+    @classmethod
+    def _is_special_key(cls, key):
+        return key.startswith('_')
+
+    @classmethod
+    def _apply_special_rule(cls, key, obj, rule):
+        if key == '_values':
+            return cls._ignore_values(obj, rule)
         return obj
 
     @classmethod

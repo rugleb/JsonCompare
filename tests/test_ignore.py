@@ -17,8 +17,17 @@ class IgnoreTestCase(unittest.TestCase):
             self.obj = json.load(fp)
 
     def test_ignore_with_listable_rules(self):
-        obj = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
-        rules = ['a', 'd', 'e']
+        obj = {
+            'a': 1,
+            'b': 2,
+            'c': 3,
+            'd': 4
+        }
+        rules = [
+            'a',
+            'd',
+            'e'
+        ]
 
         obj = Ignore(rules).transform(obj)
         self.assertEqual(obj, {
@@ -27,8 +36,17 @@ class IgnoreTestCase(unittest.TestCase):
         })
 
     def test_ignore_with_dictable_rules(self):
-        obj = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
-        rules = {'a': '*', 'd': '*', 'e': '*'}
+        obj = {
+            'a': 1,
+            'b': 2,
+            'c': 3,
+            'd': 4
+        }
+        rules = {
+            'a': '*',
+            'd': '*',
+            'e': '*'
+        }
 
         obj = Ignore(rules).transform(obj)
         self.assertEqual(obj, {
@@ -38,34 +56,73 @@ class IgnoreTestCase(unittest.TestCase):
 
     def test_ignore_with_sub_rule(self):
         obj = {
-            'a': {'a': 1, 'b': 2, 'c': 3, 'd': 4},
-            'b': {'a': 1, 'b': 2, 'c': 3, 'd': 4},
+            'a': {
+                'a': 1,
+                'b': 2,
+                'c': 3,
+                'd': 4,
+            },
+            'b': {
+                'a': {
+                    'a': 1,
+                    'b': 2,
+                },
+                'b': 2,
+                'c': 3,
+                'd': 4,
+            },
             'c': 3,
             'd': 4,
         }
         rules = {
-            'a': ['b', 'd'],
-            'b': {'b': '*', 'd': '*'},
+            'a': [
+                'b',
+                'd',
+            ],
+            'b': {
+                'a': [
+                    'a',
+                ],
+                'b': '*',
+                'd': '*',
+            },
             'd': '*',
         }
 
         obj = Ignore(rules).transform(obj)
         self.assertEqual(obj, {
-            'a': {'a': 1, 'c': 3},
-            'b': {'a': 1, 'c': 3},
+            'a': {
+                'a': 1,
+                'c': 3,
+            },
+            'b': {
+                'a': {
+                    'b': 2,
+                },
+                'c': 3,
+            },
             'c': 3,
         })
 
     def test_ignore_with_values_key(self):
-        obj = [1, 2, 3, 4]
+        obj = [
+            1,
+            2,
+            3,
+            4,
+        ]
         rules = {
             '_values': [
-                1, 3,
+                1,
+                3,
             ],
         }
 
         obj = Ignore(rules).transform(obj)
-        self.assertEqual(obj, [2, 4])
+        self.assertEqual(obj, [
+            2,
+            4,
+        ])
 
 
 if __name__ == '__main__':
