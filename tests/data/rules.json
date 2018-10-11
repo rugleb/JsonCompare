@@ -1,20 +1,42 @@
 {
-    "creator": [
-        "age"
-    ],
+    "creator": {
+        "age": "*",
+        "phone": "*",
+        "address": [
+            "city"
+        ],
+        "hobbies": {
+            "_list": {
+                "_values": [
+                    "phys",
+                    "math"
+                ]
+            }
+        },
+        "languages": {
+            "_list": {
+                "_values": {
+                    "Pascal": "*",
+                    "PHP": "*"
+                }
+            }
+        }
+    },
     "project": {
-        "description": "*",
-        "version": {
-            "_values": [
-                3.6
+        "version": "*",
+        "license": "*",
+        "language": {
+            "versions": "*",
+        },
+        "os": {
+            "_list": [
+                "version",
             ]
         }
     },
-    "os": {
-        "contributors": {
-            "_list": [
-                "name"
-            ]
+    "contributors": {
+        "_list": {
+            "name": "*"
         }
     }
 }

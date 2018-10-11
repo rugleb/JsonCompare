@@ -4,7 +4,25 @@
         "email": "rugleb@gmail.com",
         "age": 21,
         "github": "https://github.com/rugleb",
-        "weight": 82.123456
+        "weight": 82.123456,
+        "phone": "+0123456789",
+        "address": {
+            "country": "Russian Federation",
+            "city": "Moscow"
+        },
+        "hobbies": [
+            "football",
+            "phys",
+            "math",
+            "coding"
+        ],
+        "languages": [
+            "Pascal",
+            "C",
+            "C++",
+            "PHP",
+            "Python"
+        ]
     },
     "project": {
         "name": "jsoncompare",
@@ -32,6 +50,10 @@
             {
                 "name": "windows",
                 "version": 10
+            },
+            {
+                "name": "os x",
+                "version": "mojave"
             }
         ]
     },
