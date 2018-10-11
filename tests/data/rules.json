@@ -6,19 +6,15 @@
             "city"
         ],
         "hobbies": {
-            "_list": {
-                "_values": [
-                    "phys",
-                    "math"
-                ]
-            }
+            "_values": [
+                "phys",
+                "math"
+            ]
         },
         "languages": {
-            "_list": {
-                "_values": {
-                    "Pascal": "*",
-                    "PHP": "*"
-                }
+            "_values": {
+                "Pascal": "*",
+                "PHP": "*"
             }
         }
     },
@@ -26,11 +22,11 @@
         "version": "*",
         "license": "*",
         "language": {
-            "versions": "*",
+            "versions": "*"
         },
         "os": {
             "_list": [
-                "version",
+                "version"
             ]
         }
     },

@@ -1,0 +1,52 @@
+{
+    "creator": {
+        "name": "Gleb Karpushkin",
+        "email": "rugleb@gmail.com",
+        "github": "https://github.com/rugleb",
+        "weight": 82.123456,
+        "address": {
+            "country": "Russian Federation"
+        },
+        "hobbies": [
+            "football",
+            "coding"
+        ],
+        "languages": [
+            "C",
+            "C++",
+            "Python"
+        ]
+    },
+    "project": {
+        "name": "jsoncompare",
+        "description": "JSON Comparator",
+        "language": {
+            "name": "python"
+        },
+        "os": [
+            {
+                "name": "ubuntu"
+            },
+            {
+                "name": "ubuntu"
+            },
+            {
+                "name": "windows"
+            },
+            {
+                "name": "os x"
+            }
+        ]
+    },
+    "contributors": [
+        {
+            "id": 1
+        },
+        {
+            "id": 2
+        },
+        {
+            "id": 3
+        }
+    ]
+}
