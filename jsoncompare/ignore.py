@@ -7,12 +7,12 @@ class Ignore:
     def transform(self, obj):
         t = type(self.rules)
         if t is dict:
-            return self._apply_dict_rules(obj, self.rules)
+            return self._apply_dictable_rules(obj, self.rules)
         if t is list:
-            return self._apply_list_rules(obj, self.rules)
+            return self._apply_listable_rules(obj, self.rules)
         return obj
 
-    def _apply_dict_rules(self, obj, rules):
+    def _apply_dictable_rules(self, obj, rules):
         for key in rules:
             rule = rules[key]
             if key.startswith('_'):
@@ -26,10 +26,10 @@ class Ignore:
                         del obj[key]
             elif type(rule) is list:
                 if key in obj:
-                    obj[key] = self._apply_list_rules(obj[key], rule)
+                    obj[key] = self._apply_listable_rules(obj[key], rule)
             elif type(rule) is dict:
                 if key in obj:
-                    obj[key] = self._apply_dict_rules(obj[key], rule)
+                    obj[key] = self._apply_dictable_rules(obj[key], rule)
         return obj
 
     @classmethod
@@ -42,7 +42,7 @@ class Ignore:
         return obj
 
     @classmethod
-    def _apply_list_rules(cls, obj, rules):
+    def _apply_listable_rules(cls, obj, rules):
         for i in rules:
             if i in obj:
                 del obj[i]
