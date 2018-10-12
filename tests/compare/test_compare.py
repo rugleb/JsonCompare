@@ -6,14 +6,18 @@ from jsoncompare import Compare, NO_DIFF, \
     ValuesNotEqual, TypesNotEqual, KeyNotExist, ValueNotFound, LengthsNotEqual
 
 
+def load_json(file):
+    d = os.path.dirname(__file__)
+    with open('{}/{}'.format(d, file), 'r') as fp:
+        return json.load(fp)
+
+
 class CompareTestCase(unittest.TestCase):
     config = {}
     compare = Compare()
 
     def setUp(self):
-        curr_dir = os.path.dirname(__file__)
-        with open(curr_dir + '/data/config.json', 'r') as fp:
-            self.config = json.load(fp)
+        self.config = load_json('data/config.json')
         self.compare = Compare(self.config)
 
     def test_compare_int(self):
@@ -85,13 +89,9 @@ class CompareTestCase(unittest.TestCase):
         self.assertTrue(e is not p)
 
     def test_compare_deep_data(self):
-        curr_dir = os.path.dirname(__file__)
-        with open(curr_dir + '/data/rules.json', 'r') as fp:
-            rules = json.load(fp)
-        with open(curr_dir + '/data/expected.json', 'r') as fp:
-            expected = json.load(fp)
-        with open(curr_dir + '/data/actual.json', 'r') as fp:
-            actual = json.load(fp)
+        rules = load_json('data/rules.json')
+        actual = load_json('data/actual.json')
+        expected = load_json('data/expected.json')
 
         diff = Compare(self.config, rules).check(expected, actual)
         self.assertEqual(diff, NO_DIFF)

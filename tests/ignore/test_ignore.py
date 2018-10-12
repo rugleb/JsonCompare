@@ -5,6 +5,12 @@ import unittest
 from jsoncompare.ignore import Ignore
 
 
+def load_json(file):
+    d = os.path.dirname(__file__)
+    with open('{}/{}'.format(d, file), 'r') as fp:
+        return json.load(fp)
+
+
 class IgnoreTestCase(unittest.TestCase):
 
     def test_listable_rules_usage(self):
@@ -72,13 +78,9 @@ class IgnoreTestCase(unittest.TestCase):
         ])
 
     def test_deep_analyzing(self):
-        curr_dir = os.path.dirname(__file__)
-        with open(curr_dir + '/data/rules.json', 'r') as fp:
-            rules = json.load(fp)
-        with open(curr_dir + '/data/object.json', 'r') as fp:
-            obj = json.load(fp)
-        with open(curr_dir + '/data/expected.json', 'r') as fp:
-            expected = json.load(fp)
+        obj = load_json('data/object.json')
+        rules = load_json('data/rules.json')
+        expected = load_json('data/expected.json')
 
         obj = Ignore.transform(obj, rules)
         self.assertEqual(obj, expected)
