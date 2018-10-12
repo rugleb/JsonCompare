@@ -96,16 +96,6 @@ class CompareTestCase(unittest.TestCase):
         diff = Compare(self.config, rules).check(expected, actual)
         self.assertEqual(diff, NO_DIFF)
 
-        self.config.update({
-            'output': {
-                'file': {
-                    'name': 'data/diffs.json',
-                    'indent': 4,
-                }
-            }
-        })
-        Compare(self.config).check(expected, actual)
-
 
 if __name__ == '__main__':
     unittest.main()
