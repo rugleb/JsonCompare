@@ -20,9 +20,15 @@ class Ignore(ABC):
                 obj = cls._apply_special_rule(key, obj, rule)
             elif type(rule) is str:
                 obj = cls._apply_stringable_rule(key, obj, rule)
-            else:
+            elif key in obj:
                 obj[key] = cls.transform(obj[key], rule)
+        return obj
 
+    @classmethod
+    def _apply_listable_rule(cls, obj, rules):
+        for i in rules:
+            if i in obj:
+                del obj[i]
         return obj
 
     @classmethod
@@ -55,11 +61,4 @@ class Ignore(ABC):
             return [x for x in obj if x not in black_list]
         if t is obj:
             return {k: obj[k] for k in obj if k not in black_list}
-        return obj
-
-    @classmethod
-    def _apply_listable_rule(cls, obj, rules):
-        for i in rules:
-            if i in obj:
-                del obj[i]
         return obj
