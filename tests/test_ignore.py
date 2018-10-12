@@ -78,9 +78,9 @@ class IgnoreTestCase(unittest.TestCase):
         ])
 
     def test_deep_analyzing(self):
-        obj = load_json('data/object.json')
-        rules = load_json('data/rules.json')
-        expected = load_json('data/expected.json')
+        obj = load_json('data/ignore/object.json')
+        rules = load_json('data/ignore/rules.json')
+        expected = load_json('data/ignore/expected.json')
 
         obj = Ignore.transform(obj, rules)
         self.assertEqual(obj, expected)
