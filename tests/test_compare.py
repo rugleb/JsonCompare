@@ -1,7 +1,7 @@
 import unittest
 
-from jsoncompare import Compare, NO_DIFF, ValuesNotEqual, TypesNotEqual, \
-    KeyNotExist, ValueNotFound, LengthsNotEqual
+from jsoncompare import Compare, NO_DIFF, \
+    ValuesNotEqual, TypesNotEqual, KeyNotExist, ValueNotFound, LengthsNotEqual
 
 
 class CompareTestCase(unittest.TestCase):
