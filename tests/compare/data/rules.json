@@ -1,0 +1,35 @@
+{
+    "creator": {
+        "age": "*",
+        "phone": "*",
+        "address": [
+            "city"
+        ],
+        "hobbies": "*",
+        "languages": {
+            "_values": [
+                "Pascal",
+                "C",
+                "PHP"
+            ]
+        }
+    },
+    "project": {
+        "license": "*",
+        "version": "*",
+        "language": {
+            "versions": {
+                "_values": [
+                    3.4,
+                    3.5
+                ]
+            }
+        },
+        "os": {
+            "_list": [
+                "version"
+            ]
+        }
+    },
+    "contributors": "*"
+}

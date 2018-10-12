@@ -7,8 +7,11 @@ class Config:
     def get(self, path):
         value = self.config
         for key in path.split('.'):
-            value = value.get(key, {})
-        return value or None
+            try:
+                value = value.get(key, {})
+            except AttributeError:
+                return False
+        return value
 
     def merge(self, config):
         self.config.update(config)

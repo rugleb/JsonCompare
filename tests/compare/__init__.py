@@ -1,50 +1,64 @@
+import os
+import json
 import unittest
 
-from jsoncompare import Compare, NO_DIFF, ValuesNotEqual, TypesNotEqual, \
-    KeyNotExist, ValueNotFound, LengthsNotEqual
+from jsoncompare import Compare, NO_DIFF, \
+    ValuesNotEqual, TypesNotEqual, KeyNotExist, ValueNotFound, LengthsNotEqual
+
+
+def load_json(file):
+    d = os.path.dirname(__file__)
+    with open('{}/{}'.format(d, file), 'r') as fp:
+        return json.load(fp)
 
 
 class CompareTestCase(unittest.TestCase):
+    config = {}
+    compare = Compare()
+
+    def setUp(self):
+        self.config = load_json('data/config.json')
+        self.compare = Compare(self.config)
 
     def test_compare_int(self):
-        diff = Compare().check(1, 1)
+        diff = self.compare.check(1, 1)
         self.assertEqual(diff, NO_DIFF)
 
-        diff = Compare().check(1, 2)
+        diff = self.compare.check(1, 2)
         self.assertEqual(diff, ValuesNotEqual(1, 2).explain())
 
     def test_compare_str(self):
-        diff = Compare().check('str', 'str')
+        diff = self.compare.check('str', 'str')
         self.assertEqual(diff, NO_DIFF)
 
-        diff = Compare().check('str1', 'str2')
+        diff = self.compare.check('str1', 'str2')
         self.assertEqual(diff, ValuesNotEqual('str1', 'str2').explain())
 
     def test_compare_float(self):
-        diff = Compare().check(1.2, 1.2)
+        diff = self.compare.check(1.2, 1.2)
         self.assertEqual(diff, NO_DIFF)
 
-        diff = Compare().check(1.23456, 1.23)
+        diff = self.compare.check(1.23456, 1.23)
         self.assertEqual(diff, NO_DIFF)
 
-        diff = Compare().check(1.2, 1.3)
+        diff = self.compare.check(1.2, 1.3)
         self.assertEqual(diff, ValuesNotEqual(1.2, 1.3).explain())
 
     def test_compare_bool(self):
-        diff = Compare().check(True, True)
+        diff = self.compare.check(True, True)
         self.assertEqual(diff, NO_DIFF)
 
-        diff = Compare().check(True, False)
+        diff = self.compare.check(True, False)
         self.assertEqual(diff, ValuesNotEqual(True, False).explain())
 
     def test_compare_dict_diff(self):
         e = {'int': 1, 'str': 'Hi', 'float': 1.23, 'bool': True}
         a = {'int': 2, 'str': 'Hi', 'float': 1}
 
-        diff = Compare().check(e, e)
+        diff = self.compare.check(e, e)
         self.assertEqual(diff, NO_DIFF)
 
-        diff = Compare().check(e, a)
+        diff = self.compare.check(e, a)
         self.assertEqual(diff, {
             'int': ValuesNotEqual(1, 2).explain(),
             'float': TypesNotEqual(1.23, 1).explain(),
@@ -55,10 +69,10 @@ class CompareTestCase(unittest.TestCase):
         e = [1.23, 2, 'three', True]
         a = [1.23, 3, 'three', False, None]
 
-        diff = Compare().check(e, e)
+        diff = self.compare.check(e, e)
         self.assertEqual(diff, NO_DIFF)
 
-        diff = Compare().check(e, a)
+        diff = self.compare.check(e, a)
         self.assertEqual(diff, {
             '_length': LengthsNotEqual(len(e), len(a)).explain(),
             '_content': {
@@ -69,10 +83,28 @@ class CompareTestCase(unittest.TestCase):
 
     def test_prepare_method(self):
         e = [1, 2, 3, 4]
-        p = Compare().prepare(e)
+        p = self.compare.prepare(e)
 
         self.assertTrue(e == p)
         self.assertTrue(e is not p)
+
+    def test_compare_deep_data(self):
+        rules = load_json('data/rules.json')
+        actual = load_json('data/actual.json')
+        expected = load_json('data/expected.json')
+
+        diff = Compare(self.config, rules).check(expected, actual)
+        self.assertEqual(diff, NO_DIFF)
+
+        self.config.update({
+            'output': {
+                'file': {
+                    'name': 'data/diffs.json',
+                    'indent': 4,
+                }
+            }
+        })
+        Compare(self.config).check(expected, actual)
 
 
 if __name__ == '__main__':

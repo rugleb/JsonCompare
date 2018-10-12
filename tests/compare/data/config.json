@@ -1,0 +1,14 @@
+{
+    "types": {
+        "float": {
+            "allow_round": 2
+        },
+        "list": {
+            "check_length": true
+        }
+    },
+    "output": {
+        "console": false,
+        "file": false
+    }
+}

@@ -1,0 +1,144 @@
+{
+    "creator": {
+        "age": {
+            "_message": "Values not equal. Expected: <21>, received: <22>",
+            "_expected": 21,
+            "_received": 22
+        },
+        "phone": {
+            "_message": "Key does not exists. Expected: <phone>",
+            "_expected": "phone",
+            "_received": null
+        },
+        "address": {
+            "city": {
+                "_message": "Key does not exists. Expected: <city>",
+                "_expected": "city",
+                "_received": null
+            }
+        },
+        "hobbies": {
+            "_length": {
+                "_message": "Lengths not equal. Expected <4>, received: <0>",
+                "_expected": 4,
+                "_received": 0
+            },
+            "_content": {
+                "0": {
+                    "_message": "Value not found. Expected <football>",
+                    "_expected": "football",
+                    "_received": null
+                },
+                "1": {
+                    "_message": "Value not found. Expected <phys>",
+                    "_expected": "phys",
+                    "_received": null
+                },
+                "2": {
+                    "_message": "Value not found. Expected <math>",
+                    "_expected": "math",
+                    "_received": null
+                },
+                "3": {
+                    "_message": "Value not found. Expected <coding>",
+                    "_expected": "coding",
+                    "_received": null
+                }
+            }
+        },
+        "languages": {
+            "_length": {
+                "_message": "Lengths not equal. Expected <5>, received: <2>",
+                "_expected": 5,
+                "_received": 2
+            },
+            "_content": {
+                "0": {
+                    "_message": "Value not found. Expected <Pascal>",
+                    "_expected": "Pascal",
+                    "_received": null
+                },
+                "1": {
+                    "_message": "Value not found. Expected <C>",
+                    "_expected": "C",
+                    "_received": null
+                },
+                "3": {
+                    "_message": "Value not found. Expected <PHP>",
+                    "_expected": "PHP",
+                    "_received": null
+                }
+            }
+        }
+    },
+    "project": {
+        "license": {
+            "_message": "Values not equal. Expected: <MIT>, received: <Apache 2>",
+            "_expected": "MIT",
+            "_received": "Apache 2"
+        },
+        "version": {
+            "_message": "Values not equal. Expected: <0.0.1>, received: <0.0.2>",
+            "_expected": "0.0.1",
+            "_received": "0.0.2"
+        },
+        "language": {
+            "versions": {
+                "_length": {
+                    "_message": "Lengths not equal. Expected <4>, received: <2>",
+                    "_expected": 4,
+                    "_received": 2
+                },
+                "_content": {
+                    "0": {
+                        "_message": "Value not found. Expected <3.4>",
+                        "_expected": 3.4,
+                        "_received": null
+                    },
+                    "1": {
+                        "_message": "Value not found. Expected <3.5>",
+                        "_expected": 3.5,
+                        "_received": null
+                    }
+                }
+            }
+        },
+        "os": {
+            "_content": {
+                "0": {
+                    "version": {
+                        "_message": "Types not equal. Expected: <int>, received: <float>",
+                        "_expected": "int",
+                        "_received": "float"
+                    }
+                },
+                "1": {
+                    "version": {
+                        "_message": "Types not equal. Expected: <int>, received: <float>",
+                        "_expected": "int",
+                        "_received": "float"
+                    }
+                },
+                "2": {
+                    "version": {
+                        "_message": "Types not equal. Expected: <int>, received: <float>",
+                        "_expected": "int",
+                        "_received": "float"
+                    }
+                },
+                "3": {
+                    "version": {
+                        "_message": "Values not equal. Expected: <mojave>, received: <unknown>",
+                        "_expected": "mojave",
+                        "_received": "unknown"
+                    }
+                }
+            }
+        }
+    },
+    "contributors": {
+        "_message": "Key does not exists. Expected: <contributors>",
+        "_expected": "contributors",
+        "_received": null
+    }
+}

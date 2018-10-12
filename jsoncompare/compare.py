@@ -2,9 +2,10 @@ import os
 import json
 import copy
 
+from .ignore import Ignore
 from .config import Config
-from .errors import TypesNotEqual, ValuesNotEqual, KeyNotExist, \
-    LengthsNotEqual, ValueNotFound
+from .errors import TypesNotEqual, \
+    ValuesNotEqual, KeyNotExist, LengthsNotEqual, ValueNotFound
 
 
 NO_DIFF = {}
@@ -12,9 +13,11 @@ NO_DIFF = {}
 
 class Compare:
     config = {}
+    rules = {}
 
-    def __init__(self, config=None):
+    def __init__(self, config=None, rules=None):
         self.set_config(config)
+        self.set_ignore_rules(rules)
 
     def set_config(self, config=None):
         if config is None:
@@ -26,6 +29,11 @@ class Compare:
         path = os.path.dirname(__file__) + '/data/config.json'
         with open(path, 'r') as fp:
             return json.load(fp)
+
+    def set_ignore_rules(self, rules=None):
+        if rules is None:
+            rules = {}
+        self.rules = rules
 
     def check(self, expected, actual):
         e = self.prepare(expected)
@@ -169,6 +177,6 @@ class Compare:
         file_name = self.config.get(path)
         return type(file_name) is str
 
-    @classmethod
-    def prepare(cls, x):
-        return copy.deepcopy(x)
+    def prepare(self, x):
+        x = copy.deepcopy(x)
+        return Ignore.transform(x, self.rules)
