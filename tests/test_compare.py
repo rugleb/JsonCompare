@@ -1,15 +1,8 @@
-import os
-import json
 import unittest
 
+from . import load_json
 from jsoncompare import Compare, NO_DIFF, \
     ValuesNotEqual, TypesNotEqual, KeyNotExist, ValueNotFound, LengthsNotEqual
-
-
-def load_json(file):
-    d = os.path.dirname(__file__)
-    with open('{}/{}'.format(d, file), 'r') as fp:
-        return json.load(fp)
 
 
 class CompareTestCase(unittest.TestCase):
@@ -17,7 +10,7 @@ class CompareTestCase(unittest.TestCase):
     compare = Compare()
 
     def setUp(self):
-        self.config = load_json('data/compare/config.json')
+        self.config = load_json('compare/config.json')
         self.compare = Compare(self.config)
 
     def test_compare_int(self):
@@ -89,9 +82,9 @@ class CompareTestCase(unittest.TestCase):
         self.assertTrue(e is not p)
 
     def test_compare_deep_data(self):
-        rules = load_json('data/compare/rules.json')
-        actual = load_json('data/compare/actual.json')
-        expected = load_json('data/compare/expected.json')
+        rules = load_json('compare/rules.json')
+        actual = load_json('compare/actual.json')
+        expected = load_json('compare/expected.json')
 
         diff = Compare(self.config, rules).check(expected, actual)
         self.assertEqual(diff, NO_DIFF)
