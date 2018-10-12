@@ -103,7 +103,7 @@ Diff output:
 To check if the objects are the same, just call:
 
 ```python
-diff = Copare().check(expected, actual)
+diff = Compare().check(expected, actual)
 self.assertEqual(diff, {})
 ```
 
