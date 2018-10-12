@@ -1,0 +1,74 @@
+{
+    "creator": {
+        "name": "Gleb Karpushkin",
+        "email": "rugleb@gmail.com",
+        "age": 21,
+        "github": "https://github.com/rugleb",
+        "weight": 82.123456,
+        "phone": "+0123456789",
+        "address": {
+            "country": "Russian Federation",
+            "city": "Moscow"
+        },
+        "hobbies": [
+            "football",
+            "phys",
+            "math",
+            "coding"
+        ],
+        "languages": [
+            "Pascal",
+            "C",
+            "C++",
+            "PHP",
+            "Python"
+        ]
+    },
+    "project": {
+        "name": "jsoncompare",
+        "license": "MIT",
+        "version": "0.0.1",
+        "description": "JSON Comparator",
+        "language": {
+            "name": "python",
+            "versions": [
+                3.4,
+                3.5,
+                3.6,
+                3.7
+            ]
+        },
+        "os": [
+            {
+                "name": "ubuntu",
+                "version": 16
+            },
+            {
+                "name": "ubuntu",
+                "version": 18
+            },
+            {
+                "name": "windows",
+                "version": 10
+            },
+            {
+                "name": "os x",
+                "version": "mojave"
+            }
+        ]
+    },
+    "contributors": [
+        {
+            "id": 1,
+            "name": "Hulk"
+        },
+        {
+            "id": 2,
+            "name": "Iron man"
+        },
+        {
+            "id": 3,
+            "name": "Cesar"
+        }
+    ]
+}
