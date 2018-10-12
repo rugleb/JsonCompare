@@ -1,6 +1,6 @@
 import unittest
 
-from jsoncompare.config import Config
+from jsoncomparison.config import Config
 
 
 class ConfigTestCase(unittest.TestCase):

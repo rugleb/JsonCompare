@@ -1,7 +1,7 @@
 import unittest
 
 from . import load_json
-from jsoncompare import Compare, NO_DIFF, \
+from jsoncomparison import Compare, NO_DIFF, \
     ValuesNotEqual, TypesNotEqual, KeyNotExist, ValueNotFound, LengthsNotEqual
 
 

@@ -1,7 +1,7 @@
 import unittest
 
 from . import load_json
-from jsoncompare.ignore import Ignore
+from jsoncomparison.ignore import Ignore
 
 
 class IgnoreTestCase(unittest.TestCase):

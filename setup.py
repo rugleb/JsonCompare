@@ -5,13 +5,13 @@ with open('README.md', 'r') as fd:
 
 setuptools.setup(
     name='jsoncomparison',
-    version='0.0.3',
+    version='0.0.4',
     author='Gleb Karpushkin',
     author_email='rugleb@gmail.com',
     description='JSON comparator',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/rugleb/jsoncompare',
+    url='https://github.com/rugleb/jsoncomparison',
     packages=setuptools.find_packages(),
     classifiers=[
         'Programming Language :: Python :: 3',
