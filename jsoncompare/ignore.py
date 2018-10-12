@@ -7,13 +7,13 @@ class Ignore(ABC):
     def transform(cls, obj, rules):
         t = type(rules)
         if t is dict:
-            return cls._apply_dictable_rules(obj, rules)
+            return cls._apply_dictable_rule(obj, rules)
         if t is list:
-            return cls._apply_listable_rules(obj, rules)
+            return cls._apply_listable_rule(obj, rules)
         return obj
 
     @classmethod
-    def _apply_dictable_rules(cls, obj, rules):
+    def _apply_dictable_rule(cls, obj, rules):
         for key in rules:
             rule = rules[key]
             if cls._is_special_key(key):
@@ -58,7 +58,7 @@ class Ignore(ABC):
         return obj
 
     @classmethod
-    def _apply_listable_rules(cls, obj, rules):
+    def _apply_listable_rule(cls, obj, rules):
         for i in rules:
             if i in obj:
                 del obj[i]
