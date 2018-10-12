@@ -5,7 +5,7 @@ with open('README.md', 'r') as fd:
 
 setuptools.setup(
     name='jsoncomparison',
-    version='0.0.4',
+    version='0.1.0',
     author='Gleb Karpushkin',
     author_email='rugleb@gmail.com',
     description='JSON comparator',
