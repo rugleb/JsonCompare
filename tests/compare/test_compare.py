@@ -1,3 +1,5 @@
+import os
+import json
 import unittest
 
 from jsoncompare import Compare, NO_DIFF, \
@@ -73,6 +75,18 @@ class CompareTestCase(unittest.TestCase):
 
         self.assertTrue(e == p)
         self.assertTrue(e is not p)
+
+    def test_compare_deep_data(self):
+        curr_dir = os.path.dirname(__file__)
+        with open(curr_dir + '/data/rules.json', 'r') as fp:
+            rules = json.load(fp)
+        with open(curr_dir + '/data/expected.json', 'r') as fp:
+            expected = json.load(fp)
+        with open(curr_dir + '/data/actual.json', 'r') as fp:
+            actual = json.load(fp)
+
+        diff = Compare(None, rules).check(expected, actual)
+        self.assertEqual(diff, NO_DIFF)
 
 
 if __name__ == '__main__':
