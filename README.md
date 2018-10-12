@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/rugleb/jsoncompare.svg?branch=master)](https://travis-ci.com/rugleb/jsoncompare)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This package is designed for two objects with a JSON-like structure and data types.
+This package is designed to compare two objects with a JSON-like structure and data types.
 
 ### Installation
 
@@ -13,7 +13,7 @@ pip install jsoncomparison
 
 ### Quick start
 
-```
+```python
 from jsoncomparison import Compare
 
 
@@ -52,7 +52,7 @@ assert diff == {}
 ```
 
 Diff output:
-```
+```json
 {
     "project": {
         "version": {
