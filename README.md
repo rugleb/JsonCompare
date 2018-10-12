@@ -11,7 +11,15 @@ This package is designed to compare two objects with a JSON-like structure and d
 pip install jsoncomparison
 ```
 
-### Quick start
+### Usage
+
+First you need to define two variables: expected & actual.
+Think of them as the same variables that you use in unittests.
+
+Expected - the original data object, that you want to see.
+Actual - the given data object.
+
+Then we will transfer these objects to check and identify the difference between them:
 
 ```python
 from jsoncomparison import Compare
@@ -26,12 +34,12 @@ expected = {
             'name': 'python',
             'versions': [
                 3.5,
-                3.6,
-            ],
-        },
-        'os': 'linux',
+                3.6
+            ]
+        }
     },
-},
+    'os': 'linux'
+}
 
 actual = {
     'project': {
@@ -41,15 +49,17 @@ actual = {
         'language': {
             'name': 'python',
             'versions': [
-                3.6,
-            ],
-        },
-    },
-},
+                3.6
+            ]
+        }
+    }
+}
 
 diff = Compare().check(expected, actual)
-assert diff == {}
+assert diff != {}
 ```
+
+The `check` method returns a dictionary of differences between `expected` and `actual` objects, and report about it.
 
 Diff output:
 ```json
@@ -80,12 +90,100 @@ Diff output:
                     }
                 }
             }
-        },
-        "os": {
-            "_message": "Key does not exists. Expected: <os>",
-            "_expected": "os",
-            "_received": null
+        }
+    },
+    "os": {
+        "_message": "Key does not exists. Expected: <os>",
+        "_expected": "os",
+        "_received": null
+    }
+}
+```
+
+To check if the objects are the same, just call:
+
+```python
+diff = Copare().check(expected, actual)
+self.assertEqual(diff, {})
+```
+
+### Configuration
+
+You can define your configuration file and transfer it to Compare class constructor. 
+But first make sure that the structure of your configuration file is similar to [this](https://github.com/rugleb/jsoncomparison/blob/master/jsoncomparison/data/config.json).
+
+Example:
+
+```python
+import json
+from jsoncomparison import Compare
+
+
+with open('config', 'r') as fp:
+    config = json.load(fp)
+
+cmp = Compare(config)
+```
+
+### Output
+
+By default, the configuration file does not allow printing the comparison result to the console, but at the same time writes the results to a file.
+These settings can be changed in your configuration file:
+
+```json
+{    
+    "output": {
+        "console": true,
+        "file": {
+            "name": "my-output-file.json",
+            "indent": 4
         }
     }
 }
 ```
+
+### Ignore rules
+
+What if you do not want to compare some values and keys of objects from your JSON's? 
+In this case, you can define exception rules and pass them to the class constructor.
+
+Let's go back to the example above:
+
+```python
+from jsoncomparison import Compare
+
+
+expected = {
+    # ...
+}
+
+actual = {
+    # ...
+}
+
+rules = {
+    'project': {
+        'version': '*',
+        'license': '*',
+        'language': {
+            'versions': {
+                '_values': [
+                    3.5
+                ]
+            }
+        }
+    },
+    'os': '*',
+}
+
+diff = Compare(rules=rules).check(expected, actual)
+assert diff == {}
+```
+
+Now that we have added exceptions to the missing values,
+the comparison test has been successfully passed!
+
+### Links
+
+You can see a more complex comparison example that I used to test the correct operation of an application: 
+[link](https://github.com/rugleb/jsoncomparison/blob/d674b32c80d5dc1114ca109c4b4c75add53c5de8/tests/test_compare.py#L84).
