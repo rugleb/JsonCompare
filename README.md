@@ -1,6 +1,6 @@
 ## The JSON Comparison package
 
-[![Build Status](https://travis-ci.com/rugleb/jsoncompare.svg?branch=master)](https://travis-ci.com/rugleb/jsoncompare)
+[![Build Status](https://travis-ci.com/rugleb/JsonCompare.svg?branch=master)](https://travis-ci.com/rugleb/JsonCompare)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This package is designed to compare two objects with a JSON-like structure and data types.
