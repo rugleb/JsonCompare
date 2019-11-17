@@ -1,6 +1,8 @@
 ## The JSON Comparison package
 
 [![Build Status](https://travis-ci.com/rugleb/JsonCompare.svg?branch=master)](https://travis-ci.com/rugleb/JsonCompare)
+[![codecov](https://codecov.io/gh/rugleb/JsonCompare/branch/master/graph/badge.svg)](https://codecov.io/gh/rugleb/JsonCompare)
+[![Python 3.6](https://img.shields.io/badge/python-3.6+-green.svg)](https://www.python.org/downloads/release/python-360/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This package is designed to compare two objects with a JSON-like structure and data types.
