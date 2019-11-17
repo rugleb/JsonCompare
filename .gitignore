@@ -112,3 +112,6 @@ dmypy.json
 
 .idea/
 **/__pycache__/
+
+# coverage
+coverage/
