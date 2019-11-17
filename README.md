@@ -188,4 +188,4 @@ the comparison test has been successfully passed!
 ### Links
 
 You can see a more complex comparison example that I used to test the correct operation of an application: 
-[link](https://github.com/rugleb/jsoncomparison/blob/d674b32c80d5dc1114ca109c4b4c75add53c5de8/tests/test_compare.py#L84).
+[link](https://github.com/rugleb/jsoncomparison/blob/master/tests/test_compare.py#L84).
