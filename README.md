@@ -7,10 +7,10 @@
 
 This package is designed to compare two objects with a JSON-like structure and data types.
 
-### Installation
+### Install
 
 ```
-pip install jsoncomparison
+pip install -U pip jsoncomparison
 ```
 
 ### Usage
