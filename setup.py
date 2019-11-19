@@ -14,6 +14,10 @@ setuptools.setup(
     url="https://github.com/rugleb/jsoncomparison",
     download_url="https://pypi.org/project/jsoncomparison",
     packages=setuptools.find_packages(),
+    keywords=[
+        "json",
+        "compare",
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
