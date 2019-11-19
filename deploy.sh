@@ -1,5 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-python3 setup.py sdist bdist_wheel
+set -e
+
+python setup.py sdist
+
 twine upload dist/*
-rm -rf build/ dist/ *.egg-info
+
+rm -rf build/ dist/ jsoncomparison.egg-info/
