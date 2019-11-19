@@ -12,6 +12,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/rugleb/jsoncomparison",
+    download_url="https://pypi.org/project/jsoncomparison",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
