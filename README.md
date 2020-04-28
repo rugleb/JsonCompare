@@ -112,8 +112,7 @@ self.assertEqual(diff, {})
 
 ### Configuration
 
-You can define your configuration file and transfer it to Compare class constructor. 
-But first make sure that the structure of your configuration file is similar to [this](https://github.com/rugleb/jsoncomparison/blob/master/jsoncomparison/data/config.json).
+The default configuration can be overridden by passing the config dictionary to the Compare class constructor.
 
 Example:
 
@@ -121,33 +120,47 @@ Example:
 import json
 from jsoncomparison import Compare
 
-
-with open('config', 'r') as fp:
-    config = json.load(fp)
+config = {
+    'output': {
+        'console': False,
+        'file': {
+            'allow_nan': True,
+            'ensure_ascii': True,
+            'indent': 4,
+            'name': None,
+            'skipkeys': True,
+        },
+    },
+    'types': {
+        'float': {
+            'allow_round': 2,
+        },
+        'list': {
+            'check_length': True,
+        }
+    }
+}
 
 cmp = Compare(config)
 ```
 
 ### Output
 
-By default, the configuration file does not allow printing the comparison result to the console, but at the same time writes the results to a file.
-These settings can be changed in your configuration file:
+By default, the configuration does not allow printing the comparison result to the console, but at the same time writes the results to a file.
+These settings can be changed in your class config.
 
-```json
-{    
-    "output": {
-        "console": true,
-        "file": {
-            "name": "my-output-file.json",
-            "indent": 4
-        }
+```py
+config = {
+    'output': {
+        'console': True,
+        'file': {}
     }
 }
 ```
 
 ### Ignore rules
 
-What if you do not want to compare some values and keys of objects from your JSON's? 
+What if you do not want to compare some values and keys of objects from your JSON's?
 In this case, you can define exception rules and pass them to the class constructor.
 
 Let's go back to the example above:
@@ -188,5 +201,5 @@ the comparison test has been successfully passed!
 
 ### Links
 
-You can see a more complex comparison example that I used to test the correct operation of an application: 
+You can see a more complex comparison example that I used to test the correct operation of an application:
 [link](https://github.com/rugleb/jsoncomparison/blob/master/tests/test_compare.py#L84).
