@@ -1,4 +1,3 @@
-import os
 import json
 import copy
 
@@ -9,51 +8,42 @@ from .errors import TypesNotEqual, \
 
 
 NO_DIFF = {}
+NO_RULES = {}
+
+DEFAULT_CONFIG = {
+    'output': {
+        'console': False,
+        'file': {
+            'allow_nan': True,
+            'ensure_ascii': True,
+            'indent': 4,
+            'name': None,
+            'skipkeys': True,
+        },
+    },
+    'types': {
+        'float': {
+            'allow_round': 2,
+        },
+        'list': {
+            'check_length': True,
+        }
+    }
+}
 
 
 class Compare:
-    config = {}
-    rules = {}
+    
+    __slots__ = ("_config", "_rules")
 
-    def __init__(self, config=None, rules=None):
-        self.set_config(config)
-        self.set_ignore_rules(rules)
+    def __init__(self, config: dict = None, rules: dict = None):
+        if not config:
+            config = DEFAULT_CONFIG
+        if not rules:
+            rules = NO_RULES
 
-    def set_config(self, config=None):
-        if config is None:
-            config = self.get_default_config()
-        self.config = Config(config)
-
-    @classmethod
-    def get_default_config(cls):
-        default_config = {
-            'output': {
-                'console': False,
-                'file': {
-                    'allow_nan': True,
-                    'ensure_ascii': True,
-                    'indent': 4,
-                    'name': None,
-                    'skipkeys': True,
-                },
-            },
-            'types': {
-                'float': {
-                    'allow_round': 2,
-                },
-                'list': {
-                    'check_length': True,
-                }
-            }
-        }
-
-        return default_config
-
-
-    def set_ignore_rules(self, rules=None):
-        if rules is None:
-            rules = {}
-        self.rules = rules
+        self._config = Config(config)
+        self._rules = rules
 
     def check(self, expected, actual):
         e = self.prepare(expected)
@@ -114,7 +104,7 @@ class Compare:
 
     def _float_precision(self):
         path = 'types.float.allow_round'
-        return self.config.get(path)
+        return self._config.get(path)
 
     def _dict_diff(self, e, a):
         d = {}
@@ -134,7 +124,7 @@ class Compare:
 
     def _need_compare_length(self):
         path = 'types.list.check_length'
-        return self.config.get(path) is True
+        return self._config.get(path) is True
 
     def _list_content_diff(self, e, a):
         d = {}
@@ -184,19 +174,19 @@ class Compare:
         print(msg)
 
     def _write_to_file(self, d):
-        config = self.config.get('output.file')
+        config = self._config.get('output.file')
         with open(config.pop('name'), 'w') as fp:
             json.dump(d, fp, **config)
 
     def _need_write_to_console(self):
         path = 'output.console'
-        return self.config.get(path) is True
+        return self._config.get(path) is True
 
     def _need_write_to_file(self):
         path = 'output.file.name'
-        file_name = self.config.get(path)
+        file_name = self._config.get(path)
         return type(file_name) is str
 
     def prepare(self, x):
         x = copy.deepcopy(x)
-        return Ignore.transform(x, self.rules)
+        return Ignore.transform(x, self._rules)
