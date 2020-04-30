@@ -10,6 +10,7 @@ and this project adheres to [Semantic Version](https://semver.org/spec/v2.0.0.ht
 ### Changed
 - Bump `codecov` version from v2.0.15 to v2.0.22
 - Bump `coverage` version from v4.5.4 to v5.1
+- Bump `twine` version from v3.0.0 to v3.1.1
 
 ## v1.0.0 - 2019-11-19
 
