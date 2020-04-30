@@ -26,9 +26,29 @@ class Compare:
 
     @classmethod
     def get_default_config(cls):
-        path = os.path.dirname(__file__) + '/data/config.json'
-        with open(path, 'r') as fp:
-            return json.load(fp)
+        default_config = {
+            'output': {
+                'console': False,
+                'file': {
+                    'allow_nan': True,
+                    'ensure_ascii': True,
+                    'indent': 4,
+                    'name': None,
+                    'skipkeys': True,
+                },
+            },
+            'types': {
+                'float': {
+                    'allow_round': 2,
+                },
+                'list': {
+                    'check_length': True,
+                }
+            }
+        }
+
+        return default_config
+
 
     def set_ignore_rules(self, rules=None):
         if rules is None:
