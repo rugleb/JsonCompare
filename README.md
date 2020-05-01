@@ -25,7 +25,7 @@ Actual - the given data object.
 Then we will transfer these objects to check and identify the difference between them:
 
 ```python
-from jsoncomparison import Compare
+from jsoncomparison import Compare, NO_DIFF
 
 
 expected = {
@@ -59,7 +59,7 @@ actual = {
 }
 
 diff = Compare().check(expected, actual)
-assert diff != {}
+assert diff != NO_DIFF
 ```
 
 The `check` method returns a dictionary of differences between `expected` and `actual` objects, and report about it.
@@ -107,7 +107,7 @@ To check if the objects are the same, just call:
 
 ```python
 diff = Compare().check(expected, actual)
-self.assertEqual(diff, {})
+self.assertEqual(diff, NO_DIFF)
 ```
 
 ### Configuration
@@ -117,7 +117,6 @@ The default configuration can be overridden by passing the config dictionary to 
 Example:
 
 ```python
-import json
 from jsoncomparison import Compare
 
 config = {
@@ -193,7 +192,7 @@ rules = {
 }
 
 diff = Compare(rules=rules).check(expected, actual)
-assert diff == {}
+assert diff == NO_DIFF
 ```
 
 Now that we have added exceptions to the missing values,
