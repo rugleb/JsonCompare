@@ -59,6 +59,6 @@ class Ignore(ABC):
         t = type(obj)
         if t is list:
             return [x for x in obj if x not in black_list]
-        if t is obj:
+        if t is dict:
             return {k: obj[k] for k in obj if k not in black_list}
         return obj
