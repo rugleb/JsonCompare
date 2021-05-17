@@ -25,7 +25,10 @@ test: setup
 flake: setup
 	poetry run flake8 --max-complexity=10 $(PROJECT)
 
-lint: flake
+mypy: setup
+	poetry run mypy $(PROJECT)
+
+lint: flake mypy
 
 all: test lint
 

@@ -1,7 +1,5 @@
 class Config:
-    config = {}
-
-    def __init__(self, config):
+    def __init__(self, config: dict):
         self.config = config
 
     def get(self, path):

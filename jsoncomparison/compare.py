@@ -7,8 +7,8 @@ from .errors import TypesNotEqual, \
     ValuesNotEqual, KeyNotExist, LengthsNotEqual, ValueNotFound
 
 
-NO_DIFF = {}
-NO_RULES = {}
+NO_DIFF: dict = {}
+NO_RULES: dict = {}
 
 DEFAULT_CONFIG = {
     'output': {
