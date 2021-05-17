@@ -1,11 +1,15 @@
-import json
 import copy
+import json
 
-from .ignore import Ignore
 from .config import Config
-from .errors import TypesNotEqual, \
-    ValuesNotEqual, KeyNotExist, LengthsNotEqual, ValueNotFound
-
+from .errors import (
+    KeyNotExist,
+    LengthsNotEqual,
+    TypesNotEqual,
+    ValueNotFound,
+    ValuesNotEqual,
+)
+from .ignore import Ignore
 
 NO_DIFF: dict = {}
 NO_RULES: dict = {}

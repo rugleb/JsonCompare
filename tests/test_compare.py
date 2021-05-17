@@ -1,13 +1,19 @@
 import unittest
 
+from jsoncomparison import (
+    NO_DIFF,
+    Compare,
+    KeyNotExist,
+    LengthsNotEqual,
+    TypesNotEqual,
+    ValueNotFound,
+    ValuesNotEqual,
+)
+
 from . import load_json
-from jsoncomparison import Compare, NO_DIFF, \
-    ValuesNotEqual, TypesNotEqual, KeyNotExist, ValueNotFound, LengthsNotEqual
 
 
 class CompareTestCase(unittest.TestCase):
-    config = {}
-    compare = Compare()
 
     def setUp(self):
         self.config = load_json('compare/config.json')
