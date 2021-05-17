@@ -31,8 +31,8 @@ DEFAULT_CONFIG = {
         },
         'list': {
             'check_length': True,
-        }
-    }
+        },
+    },
 }
 
 

@@ -5,6 +5,7 @@ VENV := .venv
 REPORTS := .reports
 
 TESTS := tests
+PY_FILES := $(shell find $(PROJECT) $(TESTS) -name "*.py")
 
 clean:
 	@rm -rf .mypy_cache
@@ -33,12 +34,18 @@ isort: setup
 isort-lint: setup
 	poetry run isort -c $(PROJECT) $(TESTS)
 
+trailing: setup
+	@poetry run add-trailing-comma $(PY_FILES) --py36-plus --exit-zero-even-if-changed
+
+trailing-lint: setup
+	@poetry run add-trailing-comma $(PY_FILES) --py36-plus
+
 test: setup
 	poetry run pytest --cov=$(PROJECT)
 
-format: isort
+format: isort trailing
 
-lint: flake mypy isort-lint
+lint: flake mypy isort-lint trailing-lint
 
 all: format lint test
 

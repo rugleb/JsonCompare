@@ -58,11 +58,13 @@ class CompareTestCase(unittest.TestCase):
         self.assertEqual(diff, NO_DIFF)
 
         diff = self.compare.check(e, a)
-        self.assertEqual(diff, {
-            'int': ValuesNotEqual(1, 2).explain(),
-            'float': TypesNotEqual(1.23, 1).explain(),
-            'bool': KeyNotExist('bool', None).explain()
-        })
+        self.assertEqual(
+            diff, {
+                'int': ValuesNotEqual(1, 2).explain(),
+                'float': TypesNotEqual(1.23, 1).explain(),
+                'bool': KeyNotExist('bool', None).explain(),
+            },
+        )
 
     def test_list_compare(self):
         e = [1.23, 2, 'three', True]
@@ -72,13 +74,15 @@ class CompareTestCase(unittest.TestCase):
         self.assertEqual(diff, NO_DIFF)
 
         diff = self.compare.check(e, a)
-        self.assertEqual(diff, {
-            '_length': LengthsNotEqual(len(e), len(a)).explain(),
-            '_content': {
-                1: ValueNotFound(2, None).explain(),
-                3: ValueNotFound(True, None).explain(),
+        self.assertEqual(
+            diff, {
+                '_length': LengthsNotEqual(len(e), len(a)).explain(),
+                '_content': {
+                    1: ValueNotFound(2, None).explain(),
+                    3: ValueNotFound(True, None).explain(),
+                },
             },
-        })
+        )
 
     def test_prepare_method(self):
         e = [1, 2, 3, 4]

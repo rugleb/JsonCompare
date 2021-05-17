@@ -24,9 +24,10 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.6.1"
 
 [tool.poetry.dev-dependencies]
+add-trailing-comma = "^2.1"
 codecov = "^2.1"
 coverage = "^5.5"
 flake8 = "^3.9"
