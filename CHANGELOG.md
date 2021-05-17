@@ -9,6 +9,7 @@ and this project adheres to [Semantic Version](https://semver.org/spec/v2.0.0.ht
 
 ### Added
 - [Poetry](https://python-poetry.org) support ([#13](https://github.com/rugleb/JsonCompare/issues/13))
+- Linters support ([#15](https://github.com/rugleb/JsonCompare/issues/15))
 
 ## v1.0.1 - 2020-04-30
 
