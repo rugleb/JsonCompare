@@ -28,6 +28,9 @@ flake: setup
 mypy: setup
 	poetry run mypy $(PROJECT) $(TESTS)
 
+bandit: setup
+	poetry run bandit -rq $(PROJECT) $(TESTS)
+
 isort: setup
 	poetry run isort $(PROJECT) $(TESTS)
 
@@ -45,7 +48,7 @@ test: setup
 
 format: isort trailing
 
-lint: flake mypy isort-lint trailing-lint
+lint: flake mypy bandit isort-lint trailing-lint
 
 all: format lint test
 
