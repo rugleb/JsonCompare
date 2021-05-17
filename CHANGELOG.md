@@ -5,12 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Version](https://semver.org/spec/v2.0.0.html).
 
-## v1.1.0 - Unreleased
+## v1.1.0 - 2021-05-17
 
 ### Added
 - [Poetry](https://python-poetry.org) support ([#13](https://github.com/rugleb/JsonCompare/issues/13))
 - Linters support ([#15](https://github.com/rugleb/JsonCompare/issues/15))
 - [EditorConfig](https://editorconfig.org) file ([#17](https://github.com/rugleb/JsonCompare/issues/17))
+
+### Fixed
+- Ignore values if obj is a dict ([#10](https://github.com/rugleb/JsonCompare/issues/10))
 
 ## v1.0.1 - 2020-04-30
 
