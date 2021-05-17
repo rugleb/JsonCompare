@@ -24,11 +24,16 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.6.1"
 
 [tool.poetry.dev-dependencies]
+add-trailing-comma = "^2.1"
+bandit = "^1.7"
 codecov = "^2.1"
 coverage = "^5.5"
+flake8 = "^3.9"
+isort = "^5.8"
+mypy = "^0.812"
 pytest = "^6.2"
 pytest-cov = "^2.12"
 pytest-sugar = "^0.9"
@@ -47,6 +52,16 @@ directory = ".reports/coverage/html"
 
 [tool.coverage.xml]
 output = ".reports/coverage/index.xml"
+
+[tool.isort]
+atomic = true
+case_sensitive = true
+combine_star = true
+include_trailing_comma = true
+indent = 4
+line_length = 79
+multi_line_output = 3
+use_parentheses = true
 
 [build-system]
 requires = ["poetry-core>=1.0"]

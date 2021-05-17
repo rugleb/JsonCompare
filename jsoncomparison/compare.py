@@ -1,14 +1,18 @@
-import json
 import copy
+import json
 
-from .ignore import Ignore
 from .config import Config
-from .errors import TypesNotEqual, \
-    ValuesNotEqual, KeyNotExist, LengthsNotEqual, ValueNotFound
+from .errors import (
+    KeyNotExist,
+    LengthsNotEqual,
+    TypesNotEqual,
+    ValueNotFound,
+    ValuesNotEqual,
+)
+from .ignore import Ignore
 
-
-NO_DIFF = {}
-NO_RULES = {}
+NO_DIFF: dict = {}
+NO_RULES: dict = {}
 
 DEFAULT_CONFIG = {
     'output': {
@@ -27,13 +31,13 @@ DEFAULT_CONFIG = {
         },
         'list': {
             'check_length': True,
-        }
-    }
+        },
+    },
 }
 
 
 class Compare:
-    
+
     __slots__ = ("_config", "_rules")
 
     def __init__(self, config: dict = None, rules: dict = None):
@@ -141,10 +145,10 @@ class Compare:
         return self._without_empties(d)
 
     @classmethod
-    def _max_diff(cls, e, l, method):
+    def _max_diff(cls, e, lst, method):
         t = type(e)
         d = method(e, t())
-        for i, v in enumerate(l):
+        for i, v in enumerate(lst):
             if type(v) is t:
                 dd = method(e, v)
                 if len(dd) <= len(d):

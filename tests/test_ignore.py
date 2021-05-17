@@ -1,7 +1,8 @@
 import unittest
 
-from . import load_json
 from jsoncomparison.ignore import Ignore
+
+from . import load_json
 
 
 class IgnoreTestCase(unittest.TestCase):
@@ -11,10 +12,12 @@ class IgnoreTestCase(unittest.TestCase):
         rules = ['a', 'd', 'e']
 
         obj = Ignore.transform(obj, rules)
-        self.assertEqual(obj, {
-            'b': 2,
-            'c': 3,
-        })
+        self.assertEqual(
+            obj, {
+                'b': 2,
+                'c': 3,
+            },
+        )
 
     def test_dictable_rules_usage(self):
         obj = {
@@ -37,14 +40,16 @@ class IgnoreTestCase(unittest.TestCase):
         }
 
         obj = Ignore.transform(obj, rules)
-        self.assertEqual(obj, {
-            'a': {'a': 1, 'c': 3},
-            'b': {
-                'a': {'b': 2},
+        self.assertEqual(
+            obj, {
+                'a': {'a': 1, 'c': 3},
+                'b': {
+                    'a': {'b': 2},
+                    'c': 3,
+                },
                 'c': 3,
             },
-            'c': 3,
-        })
+        )
 
     def test_ignore_values(self):
         obj = [1, 2, 3, 4]
@@ -61,14 +66,16 @@ class IgnoreTestCase(unittest.TestCase):
             {'a': 4, 'b': 5, 'c': 6},
         ]
         rules = {
-            '_list': ['a', 'c']
+            '_list': ['a', 'c'],
         }
 
         obj = Ignore.transform(obj, rules)
-        self.assertEqual(obj, [
-            {'b': 2},
-            {'b': 5},
-        ])
+        self.assertEqual(
+            obj, [
+                {'b': 2},
+                {'b': 5},
+            ],
+        )
 
     def test_deep_analyzing(self):
         obj = load_json('ignore/object.json')

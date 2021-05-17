@@ -1,3 +1,19 @@
-from .compare import Compare, NO_DIFF
-from .errors import ValuesNotEqual, TypesNotEqual, KeyNotExist, \
-    ValueNotFound, LengthsNotEqual
+from .compare import NO_DIFF, Compare
+from .errors import (
+    KeyNotExist,
+    LengthsNotEqual,
+    TypesNotEqual,
+    ValueNotFound,
+    ValuesNotEqual,
+)
+
+__all__ = (
+    "Compare",
+    "NO_DIFF",
+
+    "ValuesNotEqual",
+    "TypesNotEqual",
+    "KeyNotExist",
+    "ValueNotFound",
+    "LengthsNotEqual",
+)
