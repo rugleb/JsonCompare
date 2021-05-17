@@ -6,15 +6,10 @@ python:
   - 3.8
 
 install:
-  - pip install -U pip -r requirements.txt
+  - pip install -U pip poetry
 
 script:
-  - ./pytest.sh
-  - codecov --file coverage/index.xml
+  - make
 
-notifications:
-  email:
-    recipients:
-      - rugleb@gmail.com
-    on_success: never
-    on_failure: always
+after_success:
+  - poetry run codecov --file .reports/coverage/index.xml

@@ -1,3 +1,16 @@
+# Editors
+.vscode/
+.idea/
+
+# Vagrant
+.vagrant/
+
+# Mac/OSX
+.DS_Store
+
+# Windows
+Thumbs.db
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -136,3 +149,5 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+.reports/

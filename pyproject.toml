@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "jsoncomparison"
+version = "1.0.1"
+description = "json compare utility"
+license = "MIT"
+authors = [
+    "Gleb Karpushkin <rugleb@gmail.com>",
+]
+maintainers = [
+    "Gleb Karpushkin <rugleb@gmail.com>",
+]
+readme = "README.md"
+homepage = "https://pypi.org/project/jsoncomparison"
+repository = "https://github.com/rugleb/JsonCompare"
+documentation = "https://github.com/rugleb/JsonCompare/blob/master/README.md"
+keywords = [
+    "json",
+    "compare",
+]
+classifiers = [
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Testing",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+codecov = "^2.1"
+coverage = "^5.5"
+pytest = "^6.2"
+pytest-cov = "^2.12"
+pytest-sugar = "^0.9"
+twine = "^3.4"
+
+[tool.pytest.ini_options]
+addopts = "--cov-report term --cov-report html --cov-report xml"
+
+[tool.coverage.report]
+ignore_errors = false
+skip_covered = true
+fail_under = 85
+
+[tool.coverage.html]
+directory = ".reports/coverage/html"
+
+[tool.coverage.xml]
+output = ".reports/coverage/index.xml"
+
+[build-system]
+requires = ["poetry-core>=1.0"]
+build-backend = "poetry.core.masonry.api"
