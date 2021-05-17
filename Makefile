@@ -22,6 +22,11 @@ setup: $(VENV) $(REPORTS)
 test: setup
 	poetry run pytest --cov=$(PROJECT)
 
-all: test
+flake: setup
+	poetry run flake8 --max-complexity=10 $(PROJECT)
+
+lint: flake
+
+all: test lint
 
 .DEFAULT_GOAL := all

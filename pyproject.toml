@@ -29,6 +29,7 @@ python = "^3.6"
 [tool.poetry.dev-dependencies]
 codecov = "^2.1"
 coverage = "^5.5"
+flake8 = "^3.9"
 pytest = "^6.2"
 pytest-cov = "^2.12"
 pytest-sugar = "^0.9"

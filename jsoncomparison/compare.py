@@ -33,7 +33,7 @@ DEFAULT_CONFIG = {
 
 
 class Compare:
-    
+
     __slots__ = ("_config", "_rules")
 
     def __init__(self, config: dict = None, rules: dict = None):
@@ -141,10 +141,10 @@ class Compare:
         return self._without_empties(d)
 
     @classmethod
-    def _max_diff(cls, e, l, method):
+    def _max_diff(cls, e, lst, method):
         t = type(e)
         d = method(e, t())
-        for i, v in enumerate(l):
+        for i, v in enumerate(lst):
             if type(v) is t:
                 dd = method(e, v)
                 if len(dd) <= len(d):
