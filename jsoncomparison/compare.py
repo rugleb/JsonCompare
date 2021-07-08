@@ -6,8 +6,10 @@ from .errors import (
     KeyNotExist,
     LengthsNotEqual,
     TypesNotEqual,
+    UnexpectedKey,
     ValueNotFound,
     ValuesNotEqual,
+    UnexpectedKey,
 )
 from .ignore import Ignore
 
@@ -117,6 +119,13 @@ class Compare:
                 d[k] = KeyNotExist(k, None).explain()
             else:
                 d[k] = self._diff(e[k], a[k])
+
+        for k in a:
+            if k not in e:
+                d[k] = UnexpectedKey(None, k).explain()
+            else:
+                d[k] = self._diff(e[k], a[k])
+
         return self._without_empties(d)
 
     def _list_diff(self, e, a):

@@ -1,3 +1,4 @@
+from jsoncomparison.errors import UnexpectedKey
 import unittest
 
 from jsoncomparison import (
@@ -65,6 +66,20 @@ class CompareTestCase(unittest.TestCase):
                 'bool': KeyNotExist('bool', None).explain(),
             },
         )
+
+    def test_compare_dict_diff_unexpected(self):
+        e = {'int': 2, 'str': 'Hi', 'float': 1}
+        a = {'int': 1, 'str': 'Hi', 'float': 1.23, 'bool': True}
+
+        diff = self.compare.check(e, a)
+        self.assertEqual(
+            diff, {
+                'int': ValuesNotEqual(2, 1).explain(),
+                'float': TypesNotEqual(1, 1.23).explain(),
+                'bool': UnexpectedKey(None, 'bool').explain()
+            },
+        )
+
 
     def test_list_compare(self):
         e = [1.23, 2, 'three', True]
