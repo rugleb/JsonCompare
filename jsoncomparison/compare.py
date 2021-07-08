@@ -9,7 +9,6 @@ from .errors import (
     UnexpectedKey,
     ValueNotFound,
     ValuesNotEqual,
-    UnexpectedKey,
 )
 from .ignore import Ignore
 
