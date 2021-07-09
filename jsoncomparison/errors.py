@@ -47,3 +47,6 @@ class LengthsNotEqual(Error):
 
 class ValueNotFound(Error):
     template = 'Value not found. Expected <{e}>'
+
+class UnexpectedKey(Error):
+    template = 'Unexpected key. Received: <{r}>'

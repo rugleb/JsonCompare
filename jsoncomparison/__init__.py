@@ -3,6 +3,7 @@ from .errors import (
     KeyNotExist,
     LengthsNotEqual,
     TypesNotEqual,
+    UnexpectedKey,
     ValueNotFound,
     ValuesNotEqual,
 )
@@ -16,4 +17,5 @@ __all__ = (
     "KeyNotExist",
     "ValueNotFound",
     "LengthsNotEqual",
+    "UnexpectedKey",
 )
