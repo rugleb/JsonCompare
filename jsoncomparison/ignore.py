@@ -26,9 +26,12 @@ class Ignore(ABC):
 
     @classmethod
     def _apply_listable_rule(cls, obj, rules):
-        for i in rules:
-            if i in obj:
-                del obj[i]
+        for i, rule in enumerate(rules):
+            t = type(rule)
+            if t is dict:
+                obj = cls.transform(obj[i], rule)
+            elif rule in obj:
+                del obj[rule]
         return obj
 
     @classmethod
