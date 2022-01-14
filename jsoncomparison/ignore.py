@@ -29,7 +29,7 @@ class Ignore(ABC):
         for i, rule in enumerate(rules):
             t = type(rule)
             if t is dict:
-                obj = cls.transform(obj[i], rule)
+                obj[i] = cls.transform(obj[i], rule)
             elif rule in obj:
                 del obj[rule]
         return obj
