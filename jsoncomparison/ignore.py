@@ -48,6 +48,8 @@ class Ignore(ABC):
             return cls._ignore_values(obj, rule)
         if key == '_list':
             return cls._ignore_list_items(obj, rule)
+        if key == '_range':
+            return cls._ignore_range(obj, rule)
         return obj
 
     @classmethod
@@ -61,4 +63,11 @@ class Ignore(ABC):
             return [x for x in obj if x not in black_list]
         if t is dict:
             return {k: obj[k] for k in obj if k not in black_list}
+        return obj
+
+    @classmethod
+    def _ignore_range(cls, obj, rule):
+        t = type(obj)
+        if t is int or t is float:
+            return rule[0] <= obj and obj <= rule[1]
         return obj

@@ -77,6 +77,21 @@ class IgnoreTestCase(unittest.TestCase):
             ],
         )
 
+    def test_ignore_range(self):
+        obj = {'a': 1.0}
+        rules = {
+            'a': {
+                '_range': [0.9, 1.1],
+            },
+        }
+
+        obj = Ignore.transform(obj, rules)
+        self.assertEqual(
+            obj, {
+                'a': True
+            },
+        )
+
     def test_deep_analyzing(self):
         obj = load_json('ignore/object.json')
         rules = load_json('ignore/rules.json')
