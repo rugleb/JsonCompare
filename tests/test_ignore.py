@@ -88,7 +88,7 @@ class IgnoreTestCase(unittest.TestCase):
         obj = Ignore.transform(obj, rules)
         self.assertEqual(
             obj, {
-                'a': True
+                'a': True,
             },
         )
 

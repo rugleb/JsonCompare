@@ -1,4 +1,3 @@
-from jsoncomparison.errors import UnexpectedKey
 import unittest
 
 from jsoncomparison import (
@@ -10,6 +9,7 @@ from jsoncomparison import (
     ValueNotFound,
     ValuesNotEqual,
 )
+from jsoncomparison.errors import UnexpectedKey
 
 from . import load_json
 
@@ -76,10 +76,9 @@ class CompareTestCase(unittest.TestCase):
             diff, {
                 'int': ValuesNotEqual(2, 1).explain(),
                 'float': TypesNotEqual(1, 1.23).explain(),
-                'bool': UnexpectedKey(None, 'bool').explain()
+                'bool': UnexpectedKey(None, 'bool').explain(),
             },
         )
-
 
     def test_list_compare(self):
         e = [1.23, 2, 'three', True]
