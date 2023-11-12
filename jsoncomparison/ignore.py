@@ -26,9 +26,9 @@ class Ignore(ABC):
 
     @classmethod
     def _apply_listable_rule(cls, obj, rules):
-        for i in rules:
-            if i in obj:
-                del obj[i]
+        for key in rules:
+            if key in obj:
+                del obj[key]
         return obj
 
     @classmethod
