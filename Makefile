@@ -1,5 +1,4 @@
 PROJECT := jsoncomparison
-VERSION := $(shell git describe --tags `git rev-list --tags --max-count=1`)
 
 VENV := .venv
 REPORTS := .reports
