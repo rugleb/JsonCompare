@@ -38,10 +38,10 @@ isort-lint: setup
 	poetry run isort -c $(PROJECT) $(TESTS)
 
 trailing: setup
-	@poetry run add-trailing-comma $(PY_FILES) --py36-plus --exit-zero-even-if-changed
+	@poetry run add-trailing-comma $(PY_FILES) --exit-zero-even-if-changed
 
 trailing-lint: setup
-	@poetry run add-trailing-comma $(PY_FILES) --py36-plus
+	@poetry run add-trailing-comma $(PY_FILES)
 
 test: setup
 	poetry run pytest --cov=$(PROJECT)
