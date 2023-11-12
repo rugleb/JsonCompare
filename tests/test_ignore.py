@@ -77,6 +77,40 @@ class IgnoreTestCase(unittest.TestCase):
             ],
         )
 
+    def test_ignore_list_object(self):
+        obj = {
+            'a': {
+                'b': [{
+                    'd': 1,
+                    'e': [{'f': {'g': 2, 'h': 3}}, {'f': {'g': 4, 'h': 5}}],
+                    'i': 6,
+                    'j': None,
+                }],
+            },
+        }
+
+        rules = {
+            'a': {
+                'b': [{
+                    'j': '*',
+                    'e': [{'f': {'g': '*'}}],
+                }],
+            },
+        }
+
+        obj = Ignore.transform(obj, rules)
+        self.assertEqual(
+            obj, {
+                'a': {
+                    'b': [{
+                        'd': 1,
+                        'e': [{'f': {'h': 3}}, {'f': {'h': 5}}],
+                        'i': 6,
+                    }],
+                },
+            },
+        )
+
     def test_ignore_range(self):
         obj = {'a': 1.0}
         rules = {
