@@ -1,3 +1,4 @@
+import re
 from abc import ABC
 
 
@@ -18,6 +19,8 @@ class Ignore(ABC):
             rule = rules[key]
             if cls._is_special_key(key):
                 obj = cls._apply_special_rule(key, obj, rule)
+            elif cls._is_regex_rule(rule):
+                obj = cls._apply_regex_rule(key, obj, rule)
             elif type(rule) is str:
                 obj = cls._apply_stringable_rule(key, obj, rule)
             elif key in obj:
@@ -36,6 +39,17 @@ class Ignore(ABC):
         if rule == '*':
             if key in obj:
                 del obj[key]
+        return obj
+
+    @classmethod
+    def _is_regex_rule(cls, rule):
+        return type(rule) is dict and '_re' in rule
+
+    @classmethod
+    def _apply_regex_rule(cls, key, obj, rule):
+        regex = rule['_re']
+        if key in obj and re.match(regex, obj[key]):
+            del obj[key]
         return obj
 
     @classmethod
