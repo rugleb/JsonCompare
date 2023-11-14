@@ -1,5 +1,6 @@
 import copy
 import json
+from typing import Optional
 
 from .config import Config
 from .errors import (
@@ -41,7 +42,11 @@ class Compare:
 
     __slots__ = ("_config", "_rules")
 
-    def __init__(self, config: dict = None, rules: dict = None):
+    def __init__(
+        self,
+        config: Optional[dict] = None,
+        rules: Optional[dict] = None,
+    ):
         if not config:
             config = DEFAULT_CONFIG
         if not rules:

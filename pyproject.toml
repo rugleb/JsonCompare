@@ -24,20 +24,20 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6.1"
+python = "^3.9"
 
 [tool.poetry.dev-dependencies]
-add-trailing-comma = "^2.1"
+add-trailing-comma = "^3.1"
 bandit = "^1.7"
 codecov = "^2.1"
-coverage = "^5.5"
-flake8 = "^3.9"
-isort = "^5.8"
-mypy = "^0.812"
-pytest = "^6.2"
-pytest-cov = "^2.12"
+coverage = "^7.3"
+flake8 = "^6.1"
+isort = "^5.12"
+mypy = "^1.7"
+pytest = "^7.4"
+pytest-cov = "^4.1"
 pytest-sugar = "^0.9"
-twine = "^3.4"
+twine = "^4.0"
 
 [tool.pytest.ini_options]
 addopts = "--cov-report term --cov-report html --cov-report xml"
