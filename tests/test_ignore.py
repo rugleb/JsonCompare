@@ -185,6 +185,30 @@ class IgnoreTestCase(unittest.TestCase):
         obj = Ignore.transform(obj, rules)
         self.assertEqual(obj, expected)
 
+    def test_regex_rules_usage(self):
+        obj = {'a': 1, 'b': 'some_value_that_matches', 'c': 3, 'd': 4}
+
+        rules = {
+            'b': {'_re': '^some_va'},
+        }
+
+        obj = Ignore.transform(obj, rules)
+        self.assertEqual(
+            obj, {'a': 1, 'c': 3, 'd': 4},
+        )
+
+    def test_regex_rules_usage_not_matching(self):
+        obj = {'a': 1, 'b': "non_match_value", 'c': 3, 'd': 4}
+
+        rules = {
+            'b': {'_re': '^some_va'},
+        }
+
+        obj = Ignore.transform(obj, rules)
+        self.assertEqual(
+            obj, {'a': 1, 'b': 'non_match_value', 'c': 3, 'd': 4},
+        )
+
 
 if __name__ == '__main__':
     unittest.main()
