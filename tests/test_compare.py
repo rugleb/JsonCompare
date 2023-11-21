@@ -113,6 +113,23 @@ class CompareTestCase(unittest.TestCase):
         diff = Compare(self.config, rules).check(expected, actual)
         self.assertEqual(diff, NO_DIFF)
 
+    def test_simple_list_with_dicts(self):
+        expected = [
+            {'a': "xxx"},
+            {'a': "yyy"},
+        ]
+        actual = [
+            {'a': "zzz"},
+            {'a': "yyy"},
+        ]
+        diff = Compare().check(expected, actual)
+        self.assertEqual(
+            diff, {
+                '_content': {
+                    0: {'a': ValuesNotEqual('xxx', 'zzz').explain()},
+                },
+            },
+        )
 
 if __name__ == '__main__':
     unittest.main()
