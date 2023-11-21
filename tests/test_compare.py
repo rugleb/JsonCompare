@@ -131,5 +131,53 @@ class CompareTestCase(unittest.TestCase):
             },
         )
 
+    def test_list_with_dicts(self):
+        expected = [
+            {'a': "xxx"},
+            {'a': "iii"},
+            {'a': "yyy"},
+            {'a': "jjj"},
+        ]
+        actual = [
+            {'a': "zzz"},
+            {'a': "yyy"},
+            {'a': "xxx"},
+            {'a': "eee"},
+        ]
+        diff = Compare().check(expected, actual)
+        print(diff)
+        self.assertEqual(
+            diff, {
+                '_content': {
+                    1: {'a': ValuesNotEqual('iii', 'zzz').explain()},
+                    3: {'a': ValuesNotEqual('jjj', 'zzz').explain()},
+                },
+            },
+        )
+
+    def test_list_with_dicts_with_duplicates(self):
+        expected = [
+            {'a': "xxx"},
+            {'a': "iii"},
+            {'a': "xxx"},
+            {'a': "jjj"},
+        ]
+        actual = [
+            {'a': "zzz"},
+            {'a': "iii"},
+            {'a': "xxx"},
+            {'a': "iii"},
+        ]
+        diff = Compare().check(expected, actual)
+        print(diff)
+        self.assertEqual(
+            diff, {
+                '_content': {
+                    3: {'a': ValuesNotEqual('jjj', 'zzz').explain()},
+                },
+            },
+        )
+
+
 if __name__ == '__main__':
     unittest.main()
