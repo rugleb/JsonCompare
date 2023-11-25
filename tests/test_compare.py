@@ -145,7 +145,6 @@ class CompareTestCase(unittest.TestCase):
             {'a': "eee"},
         ]
         diff = Compare().check(expected, actual)
-        print(diff)
         self.assertEqual(
             diff, {
                 '_content': {
@@ -169,7 +168,6 @@ class CompareTestCase(unittest.TestCase):
             {'a': "iii"},
         ]
         diff = Compare().check(expected, actual)
-        print(diff)
         self.assertEqual(
             diff, {
                 '_content': {
