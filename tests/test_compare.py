@@ -131,6 +131,10 @@ class CompareTestCase(unittest.TestCase):
             },
         )
 
+    # The next two tests represent some current behaviour that probably
+    # is incorrect so they are left here as documentation for future changes
+    # See https://github.com/rugleb/JsonCompare/pull/37#issuecomment-1821786007
+
     def test_list_with_dicts(self):
         expected = [
             {'a': "xxx"},
