@@ -113,6 +113,73 @@ class CompareTestCase(unittest.TestCase):
         diff = Compare(self.config, rules).check(expected, actual)
         self.assertEqual(diff, NO_DIFF)
 
+    def test_simple_list_with_dicts(self):
+        expected = [
+            {'a': "xxx"},
+            {'a': "yyy"},
+        ]
+        actual = [
+            {'a': "zzz"},
+            {'a': "yyy"},
+        ]
+        diff = Compare().check(expected, actual)
+        self.assertEqual(
+            diff, {
+                '_content': {
+                    0: {'a': ValuesNotEqual('xxx', 'zzz').explain()},
+                },
+            },
+        )
+
+    # The next two tests represent some current behaviour that probably
+    # is incorrect so they are left here as documentation for future changes
+    # See https://github.com/rugleb/JsonCompare/pull/37#issuecomment-1821786007
+
+    def test_list_with_dicts(self):
+        expected = [
+            {'a': "xxx"},
+            {'a': "iii"},
+            {'a': "yyy"},
+            {'a': "jjj"},
+        ]
+        actual = [
+            {'a': "zzz"},
+            {'a': "yyy"},
+            {'a': "xxx"},
+            {'a': "eee"},
+        ]
+        diff = Compare().check(expected, actual)
+        self.assertEqual(
+            diff, {
+                '_content': {
+                    1: {'a': ValuesNotEqual('iii', 'zzz').explain()},
+                    3: {'a': ValuesNotEqual('jjj', 'zzz').explain()},
+                },
+            },
+        )
+
+    def test_list_with_dicts_with_duplicates(self):
+        expected = [
+            {'a': "xxx"},
+            {'a': "iii"},
+            {'a': "xxx"},
+            {'a': "jjj"},
+        ]
+        actual = [
+            {'a': "zzz"},
+            {'a': "iii"},
+            {'a': "xxx"},
+            {'a': "iii"},
+        ]
+        diff = Compare().check(expected, actual)
+        self.assertEqual(
+            diff, {
+                '_content': {
+                    3: {'a': ValuesNotEqual('jjj', 'zzz').explain()},
+                },
+            },
+        )
+
 
 if __name__ == '__main__':
     unittest.main()

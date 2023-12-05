@@ -152,7 +152,7 @@ class Compare:
             if t in (int, str, bool, float):
                 d[i] = ValueNotFound(v, None).explain()
             elif t is dict:
-                d[i] = self._max_diff(v, a, self._dict_diff)
+                d[i] = self._min_diff(v, a, self._dict_diff)
             elif t is list:
                 d[i] = self._max_diff(v, a, self._list_diff)
         return self._without_empties(d)
@@ -166,6 +166,18 @@ class Compare:
                 dd = method(e, v)
                 if len(dd) <= len(d):
                     d = dd
+        return d
+
+    @classmethod
+    def _min_diff(cls, e, lst, method):
+        t = type(e)
+        d = method(e, t())
+        for i, v in enumerate(lst):
+            if type(v) is t:
+                dd = method(e, v)
+                if len(dd) <= len(d):
+                    d = dd
+                    break
         return d
 
     @classmethod
